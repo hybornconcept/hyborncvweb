@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Node.js dependencies
 node_modules/
 
@@ -24,3 +25,28 @@ Thumbs.db
 # Cursor specific files
 .cursorrules
 requirements.md
+=======
+node_modules
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+>>>>>>> feature/ui-updates

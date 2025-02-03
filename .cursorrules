@@ -1,0 +1,112 @@
+# PROJECT OVERVIEW
+- A resume review platform where users can submit their resumes for expert feedback. The app has three main pages: a landing page, an authentication page, and a user dashboard. Built with SvelteKit (frontend) and PocketBase (backend), it leverages shadcn-svelte for a polished UI.
+
+# PERSONALITY
+- Keep the tone professional yet approachable. Use clear, concise language. Avoid jargon unless necessary, and always explain technical terms for clarity.
+
+# TECH STACK
+- **Frontend**: SvelteKit with shadcn-svelte for UI components.
+- **Backend**: PocketBase for authentication, file storage, and data management.
+- **Validation**: Zod for form validation.
+- **Deployment**: Vercel (SvelteKit) and a cloud service like DigitalOcean (PocketBase).
+
+# ERROR FIXING PROCESS
+1. **Identify the Error**:
+   - Check browser console logs for client-side errors.
+   - Review server logs for backend issues.
+2. **Reproduce the Error**:
+   - Isolate the issue by replicating it in a controlled environment.
+3. **Debug**:
+   - Use `console.log` or debugging tools to trace the problem.
+   - Validate data flow between SvelteKit and PocketBase.
+4. **Fix and Test**:
+   - Apply the fix and test thoroughly to ensure the issue is resolved.
+5. **Document**:
+   - Add comments or update documentation to prevent recurrence.
+
+# BUILDING PROCESS
+1. **Setup**:
+   - Initialize SvelteKit and install shadcn-svelte.
+   - Configure PocketBase and create collections for users and resumes.
+2. **Landing Page**:
+   - Build the hero section, features, testimonials, and CTAs using shadcn-svelte components.
+3. **Auth Page**:
+   - Create login and sign-up forms with validation.
+   - Integrate PocketBase authentication.
+4. **Users Page**:
+   - Develop the profile section, resume submission form, and review status display.
+5. **State Management**:
+   - Use Svelte stores for centralized state management.
+6. **Testing**:
+   - Test all pages and flows for functionality and responsiveness.
+7. **Deployment**:
+   - Deploy SvelteKit to Vercel and PocketBase to a cloud service.
+
+8. Our .env Variables
+```plaintext
+# SvelteKit
+PUBLIC_POCKETBASE_URL="https://your-pocketbase-instance.com"
+
+# PocketBase
+POCKETBASE_ADMIN_EMAIL="admin@example.com"
+POCKETBASE_ADMIN_PASSWORD="securepassword"
+
+9. **CURRENT FILE STRUCTURE**:
+tree -L 4 -a -I 'node_modules|.git|__pycache__|.DS_Store|pytest_cache|.vscode'
+src/
+├── lib/
+│   ├── stores/              # Svelte stores for state management
+│   ├── utils/               # Utility functions (e.g., validation, API calls)
+├── routes/
+│   ├── +layout.svelte       # Global layout
+│   ├── +page.svelte         # Landing page
+│   ├── auth/
+│   │   ├── +page.svelte     # Auth page
+│   ├── users/
+│   │   ├── +page.svelte     # Users page
+├── app.html                 # Base HTML template
+.env                         # Environment variables
+
+10. **GITHUB PUSH PROCESS**:
+Create a New Branch:
+
+Use git checkout -b feature/your-feature-name.
+
+Stage Changes:
+
+Use git add . to stage all changes.
+
+Commit Changes:
+
+Use git commit -m "Your commit message".
+
+Push to Remote:
+
+Use git push origin feature/your-feature-name.
+
+Create a Pull Request:
+
+Open a PR on GitHub and request a code review.
+
+Merge and Deploy:
+
+Merge the PR into main and trigger a deployment.
+
+11. **IMPORTANT**:
+Keep the code modular and reusable.
+
+Validate all user inputs using Zod.
+
+Test thoroughly before deploying.
+
+Document all major decisions and processes.
+
+12. **OTHER CONTEXT**:
+Use shadcn-svelte’s pre-built components to save time and ensure consistency.
+
+Regularly sync with the team to align on priorities and progress.
+
+13. **COMMENTS**:
+Add comments to explain complex logic or non-obvious decisions.
+
+Use TODO comments for pending tasks or improvements.
