@@ -37,7 +37,7 @@
         <div class="text-center group cursor-pointer">
           <div class="transform transition-all duration-300 hover:scale-110 hover:-translate-y-2">
             <h2 
-              class="text-5xl font-extrabold mb-2 transition-all duration-300 bg-gradient-to-r from-[#E100FF] to-[#7F00FF] group-hover:text-[#1a1a1a] text-transparent bg-clip-text"
+              class="text-4xl md:text-5xl  font-extrabold mb-2 transition-all duration-300 bg-gradient-to-r from-[#E100FF] to-[#7F00FF] group-hover:text-[#1a1a1a] text-transparent bg-clip-text"
             >
               {#if stat.countUp}
                 <CountUp value={stat.value} />
@@ -45,10 +45,11 @@
                 {stat.value}
               {/if}
             </h2>
-            <p class="font-medium text-gray-700 mb-1 transition-transform duration-300 group-hover:-translate-y-1">
+            <p class="text-sm md:text-base font-medium text-gray-700 mb-1 transition-transform duration-300 group-hover:-translate-y-1">
               {stat.label}
             </p>
-            <p class="text-sm text-gray-500 transition-transform duration-300 group-hover:-translate-y-1">
+
+            <p class="text-xs md:text-base  text-gray-500 transition-transform duration-300 group-hover:-translate-y-1">
               {stat.sublabel}
             </p>
           </div>

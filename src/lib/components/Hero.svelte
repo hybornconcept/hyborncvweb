@@ -4,7 +4,7 @@
 </script>
 
 <div 
-  class="relative bg-cover bg-center bg-no-repeat h-[60vh] sm:h-[85vh]"
+  class="relative bg-cover bg-center bg-no-repeat h-[60vh] sm:h-[90vh]"
   style="background-image: url('https://img.freepik.com/free-photo/violet-watercolor-texture-background_1083-172.jpg')"
 >
   <!-- Gradient overlay -->
@@ -12,12 +12,10 @@
   
   <div class="relative h-full px-4 mx-auto max-w-7xl md:px-24 lg:px-8 flex flex-col justify-center">
     <div class="grid gap-8 lg:gap-0 lg:grid-cols-2 items-center my-auto">
-      <div class="flex flex-col justify-center max-w-3xl mx-auto lg:mx-0 text-center lg:text-left lg:-mt-20">
-        <h1 class="mb-4 text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.2] text-[#1a1a1a]">
-          Build that
+      <div class="flex flex-col justify-center max-w-2xl md:max-w-3xl mx-auto lg:mx-0 text-center lg:text-left -mt-[5vh] md:-mt-[15vh]">
+        <h1 class="mb-4 text-3xl md:text-6xl  font-extrabold tracking-tight leading-[1.2] text-[#1a1a1a]">
+          Build that<br />
           <span class="bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-transparent bg-clip-text">Resume</span> that
-          <br />
-         
           gets you 
           <span class="bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-transparent bg-clip-text">hired.</span>
         </h1>
@@ -33,7 +31,7 @@
           </Button>
         </div>
       </div>
-      <div class="relative flex justify-center lg:justify-end pt-5 lg:-ml-25">
+      <div class="relative flex justify-center lg:justify-end">
         <!-- Dashboard image with shadow and border -->
         <div class="relative md:block hidden">
           <div class="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-transparent rounded-lg"></div>
@@ -41,9 +39,9 @@
             class="object-contain relative w-full max-w-[500px] h-auto"
             src="business.png"
             alt="Dashboard Preview"
-            width="500"
-            height="600"
-            style="width: 500px; height: auto;"
+            width="450"
+            height="550"
+            style="width: 450px; height: 550px;"
           />
         </div>
       </div>

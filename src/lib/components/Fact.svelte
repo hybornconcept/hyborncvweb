@@ -34,7 +34,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
       <!-- Left Side - Large Text -->
       <div class="text-center lg:text-left">
-        <h2 class="text-4xl  md:text-[4rem] leading-[1.1] font-light bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
+        <h2 class="text-3xl -mb-5 md:mb-0 md:text-[4rem] leading-[1.1] font-light bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
           Why do you<span class="hidden md:inline"><br/></span> 
           Need Our <span class="hidden md:inline"><br/></span>
           Services
@@ -45,13 +45,14 @@
       <div class="space-y-4">
         {#each testimonials as { quote, author }, index}
           <div class="space-y-2 text-center md:text-left">
-            <p class="text-xl leading-relaxed italic">
+            <p class="text-md md:text-xl leading-relaxed italic">
               "{quote}"
             </p>
-            <p class="text-gray-500 text-sm">- {author}</p>
+            <p class="text-gray-500 text-xs md:text-sm">- {author}</p>
           </div>
           {#if index !== testimonials.length - 1}
             <Separator />
+
           {/if}
         {/each}
       </div>

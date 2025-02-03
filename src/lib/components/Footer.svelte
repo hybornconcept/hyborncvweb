@@ -20,7 +20,7 @@
           </p>
         </div>
       </div>
-      <div class="space-y-2 text-sm text-center sm:text-left">
+      <div class="space-y-2 text-xs md:text-sm text-center sm:text-left">
         <p class="text-base font-bold tracking-wide text-white">Contacts</p>
         <div class="flex flex-row sm:flex-col justify-center items-center sm:items-start gap-4 sm:gap-2">
           <div class="flex justify-center sm:justify-start">
@@ -76,10 +76,11 @@
         </p>
       </div>
     </div>
-    <div class="flex flex-col-reverse justify-between pt-5 pb-10 border-t border-gray-700 lg:flex-row">
-      <p class="text-sm  text-gray-300 text-center lg:text-left">
+    <div class="flex flex-col-reverse justify-between pt-5 pb-10 border-t border-gray-700 lg:flex-row text-xs md:text-sm">
+      <p class="  text-gray-300 text-center lg:text-left">
         © Copyright 2025 HybornCV. All rights reserved.
       </p>
+
       <ul class="flex flex-row justify-center lg:justify-start mb-3 lg:mb-0 items-center lg:items-start w-full lg:w-auto">
         <li>
           <a href="/" class="text-sm text-gray-300 transition-colors duration-300 hover:text-white">FAQ</a>
