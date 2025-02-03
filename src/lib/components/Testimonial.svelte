@@ -1,66 +1,133 @@
-<script>
+<script lang="ts">
+  import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "$lib/components/ui/carousel";
+  import Autoplay from 'embla-carousel-autoplay';
+  import { Star } from 'lucide-svelte';
+  import { browser } from '$app/environment';
+
+  const autoplayPlugin = Autoplay({
+    delay: 4000,
+    stopOnInteraction: true,
+    stopOnMouseEnter: false
+  });
+
   const testimonials = [
     {
-      name: "Thomson Zarki",
-      avatar: "https://ui-avatars.com/api/?name=Thomson+Zarki&background=603285&color=fff",
+      name: "Sarah Johnson",
+      role: "Software Engineer at Google",
+      avatar: "https://picsum.photos/seed/sarah/200",
       rating: 5,
-      comment: "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been text ever since.",
+      comment: "The resume writing service was exceptional. Within weeks of using my new resume, I landed multiple interviews with top tech companies.",
       time: "2 days ago"
     },
     {
-      name: "Thomson Zarki",
-      avatar: "https://ui-avatars.com/api/?name=Thomson+Zarki&background=603285&color=fff",
+      name: "Michael Chen",
+      role: "Product Manager at Amazon", 
+      avatar: "https://picsum.photos/seed/michael/200",
       rating: 5,
-      comment: "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been text ever since.",
-      time: "3 days ago"
+      comment: "The team did an amazing job highlighting my achievements. The ATS optimization really made a difference in my job search.",
+      time: "1 week ago"
     },
     {
-      name: "Thomson Zarki",
-      avatar: "https://ui-avatars.com/api/?name=Thomson+Zarki&background=603285&color=fff",
+      name: "Emily Rodriguez",
+      role: "Marketing Director at Netflix",
+      avatar: "https://picsum.photos/seed/emily/200", 
       rating: 5,
-      comment: "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been text ever since.",
-      time: "4 days ago"
+      comment: "Not only did they craft a stunning resume, but the LinkedIn makeover helped me get noticed by recruiters immediately.",
+      time: "2 weeks ago"
+    },
+    {
+      name: "David Kim",
+      role: "Data Scientist at Microsoft",
+      avatar: "https://picsum.photos/seed/david/200",
+      rating: 5,
+      comment: "The interview preparation service was invaluable. I felt confident and well-prepared, which helped me secure my dream job.",
+      time: "3 weeks ago"
+    },
+    {
+      name: "Lisa Thompson",
+      role: "UX Designer at Apple",
+      avatar: "https://picsum.photos/seed/lisa/200",
+      rating: 5,
+      comment: "The portfolio creation service helped me showcase my work in a professional and engaging way. Highly recommended!",
+      time: "1 month ago"
+    },
+    {
+      name: "James Wilson",
+      role: "Financial Analyst at JP Morgan",
+      avatar: "https://picsum.photos/seed/james/200",
+      rating: 5,
+      comment: "The cover letter writing service perfectly captured my experience and aspirations. Worth every penny!",
+      time: "1 month ago"
     }
   ];
+
+  const carouselOptions = {
+    align: "start",
+    loop: true,
+    skipSnaps: true,
+    plugins: [autoplayPlugin]
+  };
 </script>
 
-<section class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 md:px-24 lg:px-8">
+<section id="testimonials" class="py-20 bg-gray-50 px-8 ">
+  <div class="max-w-7xl text-center md:text-left mx-auto relative">
     <div class="mb-12">
-      <p class="text-[hsl(274,54%,41%)] font-medium mb-2">Testimonials</p>
-      <h2 class="text-3xl font-bold text-[#1a1a1a]">What Our Clients Saying?</h2>
+      <p class="text-gray-400 text-lg font-thin">Testimonials</p>
+      <h2 class="text-4xl font-thin mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#E100FF] to-[#7F00FF]">
+        What Our Clients Said About Us
+      </h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {#each testimonials as testimonial}
-        <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-          <div class="flex items-center gap-4 mb-4">
-            <img 
-              src={testimonial.avatar} 
-              alt={testimonial.name}
-              class="w-12 h-12 rounded-full"
-            />
-            <div>
-              <h3 class="font-semibold text-[#1a1a1a]">{testimonial.name}</h3>
-              <div class="flex items-center gap-1">
+    <Carousel
+      class="w-full relative group mx-auto"
+      opts={carouselOptions}
+    >
+      <CarouselContent class="px-4 sm:px-2 flex">
+        {#each testimonials as testimonial}
+          <CarouselItem 
+            class="px-2 sm:px-3 basis-full sm:basis-1/2 lg:basis-1/3 flex-shrink-0"
+          >
+            <div class="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 h-full border border-gray-200">
+              <div class="flex flex-col sm:flex-row items-center gap-4 mb-4">
+                <img 
+                  src={testimonial.avatar} 
+                  alt={testimonial.name}
+                  class="w-12 h-12 rounded-full object-cover"
+                />
+                <div class="text-center sm:text-left">
+                  <h3 class="font-semibold text-[#1a1a1a]">{testimonial.name}</h3>
+                  <p class="text-sm text-gray-500">{testimonial.role}</p>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-center sm:justify-start gap-1 mb-3">
                 {#each Array(5) as _, i}
-                  <svg 
-                    class="w-4 h-4 {i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}" 
-                    fill="currentColor" 
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
+                  <Star class="w-4 h-4 {i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}" />
                 {/each}
               </div>
-            </div>
-          </div>
 
-          <p class="text-gray-600 text-sm mb-4">{testimonial.comment}</p>
-          
-          <p class="text-gray-400 text-xs">{testimonial.time}</p>
-        </div>
-      {/each}
-    </div>
+              <p class="text-gray-600 text-md mb-4 text-center sm:text-left">{testimonial.comment}</p>
+              
+              <p class="text-gray-400 text-xs text-center sm:text-left">{testimonial.time}</p>
+            </div>
+          </CarouselItem>
+        {/each}
+      </CarouselContent>
+      <div class="absolute top-0 bottom-0 -left-4 -right-4 sm:-left-6 sm:-right-6 pointer-events-none">
+        <CarouselPrevious 
+          class="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-auto opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity" 
+        />
+        <CarouselNext 
+          class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-auto opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity" 
+        />
+      </div>
+    </Carousel>
   </div>
 </section>
+
+<style>
+  :global(.carousel-prev),
+  :global(.carousel-next) {
+    @apply bg-white hover:bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-all scale-75 sm:scale-100;
+  }
+</style>

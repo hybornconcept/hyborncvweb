@@ -4,15 +4,15 @@
   import Header from '$lib/components/Header.svelte';
   import Services from "$lib/components/Services.svelte";
   import PricingCard from "$lib/components/PricingCard.svelte";
-  import CTA from "$lib/components/CTA.svelte";
+  import Fact from "$lib/components/Fact.svelte";
   import Testimonial from "$lib/components/Testimonial.svelte";
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 <Header />
 <Hero />
 <StatsCard />
+<Fact />
 <Services />
 <PricingCard />
-<CTA />
 <Testimonial />
 <Footer />  

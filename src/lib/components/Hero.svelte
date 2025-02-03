@@ -4,49 +4,52 @@
 </script>
 
 <div 
-  class="relative bg-cover bg-center bg-no-repeat h-[85vh]"
+  class="relative bg-cover bg-center bg-no-repeat h-[60vh] sm:h-[85vh]"
   style="background-image: url('https://img.freepik.com/free-photo/violet-watercolor-texture-background_1083-172.jpg')"
 >
-  <div class="absolute inset-0 bg-white/80"></div>
+  <!-- Gradient overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white via-[hsl(274,54%,41%)]/10 to-[hsl(274,54%,41%)]/20"></div>
   
   <div class="relative h-full px-4 mx-auto max-w-7xl md:px-24 lg:px-8 flex flex-col justify-center">
-    <div class="grid gap-0 lg:grid-cols-2 items-center">
-      <div class="flex flex-col justify-center max-w-2xl -mt-10">
-        <h1 class="mb-4 text-5xl font-extrabold tracking-tight leading-tight md:text-6xl xl:text-7xl text-[#1a1a1a]">
-          We Are Complete
+    <div class="grid gap-8 lg:gap-0 lg:grid-cols-2 items-center my-auto">
+      <div class="flex flex-col justify-center max-w-3xl mx-auto lg:mx-0 text-center lg:text-left lg:-mt-20">
+        <h1 class="mb-4 text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.2] text-[#1a1a1a]">
+          Build that
+          <span class="bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-transparent bg-clip-text">Resume</span> that
           <br />
-          Consulting Service
-          <br />
-          Provide
+         
+          gets you 
+          <span class="bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-transparent bg-clip-text">hired.</span>
         </h1>
-        <p class="mb-8 text-base text-gray-500 md:text-lg max-w-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <p class="mb-4 text-base text-gray-600 md:text-lg max-w-lg mx-auto lg:mx-0">
+          Improve Your Career Path - Get that resume expeertly tailored to help you get that your dream job!
         </p>
-        <div class="flex gap-6 items-center">
-          <Button variant="default" class="bg-[hsl(274,54%,41%)] hover:bg-[hsl(274,54%,41%)]/90 text-lg px-8 py-6">Get Started</Button>
-          <button class="flex items-center gap-3 text-gray-700 hover:text-gray-900">
-            <div class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-300">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                <path d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347c-.75.412-1.667-.13-1.667-.986V5.653Z" />
-              </svg>
-            </div>
-            <span class="text-lg">Watch Now</span>
-          </button>
+        <div class="flex gap-4 items-center justify-center lg:justify-start">
+          <Button 
+            variant="default" 
+            class="bg-gradient-to-r from-[#E100FF] to-[#7F00FF] hover:opacity-90 text-xl px-10 py-6 rounded-full border-0"
+          >
+            Get Started
+          </Button>
         </div>
       </div>
-      <div class="relative flex justify-end pt-5 -ml-25">
-        <img
-          class="object-contain"
-          src="business.png"
-          alt="hero-image"
-          width="500"
-          height="600"
-          style="width: 500px; height: 600px;"
-        />
+      <div class="relative flex justify-center lg:justify-end pt-5 lg:-ml-25">
+        <!-- Dashboard image with shadow and border -->
+        <div class="relative md:block hidden">
+          <div class="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-transparent rounded-lg"></div>
+          <img
+            class="object-contain relative w-full max-w-[500px] h-auto"
+            src="business.png"
+            alt="Dashboard Preview"
+            width="500"
+            height="600"
+            style="width: 500px; height: auto;"
+          />
+        </div>
       </div>
     </div>
     
-    <div class="absolute -bottom-12 left-0 right-0">
+    <div class="absolute -bottom-12 left-0 lg:block hidden right-0">
       <StatsCard />
     </div>
   </div>

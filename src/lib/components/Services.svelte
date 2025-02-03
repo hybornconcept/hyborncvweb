@@ -1,99 +1,114 @@
 <script>
+  import { Button } from "$lib/components/ui/button";
+
+  import { Wrench, MapPin, Zap, Layout, User, Calendar, ArrowRight } from "lucide-svelte";
+
   const services = [
     {
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-              <line x1="8" y1="21" x2="16" y2="21"/>
-              <line x1="12" y1="17" x2="12" y2="21"/>
-            </svg>`,
-      title: "Business Services",
-      description: "We provide business services to you so that you can set up a successful business",
-      link: "/services/business"
+      icon: Wrench,
+      title: "Professional Resume/CV Writing",
+      description: "ATS-optimized resumes that highlight your achievements and get you noticed by top employers. 98% interview success rate!"
     },
     {
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M2 12h20"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>`,
-      title: "Social Media Marketing",
-      description: "We provide marketing services so that your business can be recognized by many people",
-      link: "/services/marketing"
+      icon: MapPin,
+      title: "Cover Letter Writing Services", 
+      description: "Compelling cover letters that tell your career story and make you stand out from other candidates."
     },
     {
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>`,
-      title: "Consumer Product",
-      description: "We provide consumer product services so that your product is more recognizable",
-      link: "/services/product"
+      icon: Zap,
+      title: "Statement of Purpose/ Letter of Intent/Sustainability",
+      description: "Persuasive statements that showcase your goals, achievements and fit for your Masters or PhD program Abroad."
     },
     {
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>`,
-      title: "Research & Discovery",
-      description: "We provide services to research your business if there is still something missing and unclear",
-      link: "/services/research"
+      icon: Layout,
+      title: "Linkedin Profile Makeover",
+      description: "SEO-optimized LinkedIn profiles that attract recruiters and unlock hidden job opportunities."
     },
     {
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>`,
-      title: "Quality Resourcing",
-      description: "We will find the best and also we have highly skilled partners and quality work",
-      link: "/services/resourcing"
+      icon: User,
+      title: "Web based Portfolio creation",
+      description: "Eye-catching online portfolios that showcase your work and personal brand to potential employers."
     },
     {
-      icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="M7 15h0M12 15h0M17 15h0"/>
-            </svg>`,
-      title: "Financial Services",
-      description: "We provide financial services so you don't have to worry about finance in your business",
-      link: "/services/financial"
+      icon: Calendar,
+      title: "Interview tips & Preparation",
+      description: "Expert coaching  to help you ace interviews and negotiate the best compensation package."
     }
   ];
 </script>
 
-<section class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 md:px-24 lg:px-8">
-    <div class="mb-16">
-      <p class="text-[hsl(274,54%,41%)] font-medium mb-2">Our Service</p>
-      <div class="flex justify-between items-end">
-        <h2 class="text-4xl font-bold text-[#1a1a1a] max-w-md">We Quality Service Provider With Love</h2>
-        <p class="text-gray-500 max-w-md text-sm">We will provide the best service for you and we provide many services so you don't have to build your business we will teach you from start to success</p>
-      </div>
+<section id="services" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-12 sm:px-6 md:px-24 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-sm text-gray-400  font-normal mb-4">Our Services</h2>
+      <p class="text-5xl font-extralight bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-transparent bg-clip-text">What we really do.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
       {#each services as service}
-        <div class="group hover:bg-white p-8 rounded-lg transition-all duration-300">
-          <div class="mb-6">
-            <div class="w-16 h-16 rounded-lg flex items-center justify-center text-[hsl(274,54%,41%)] group-hover:bg-[hsl(274,54%,41%)]/10 transition-colors duration-300">
-              {@html service.icon}
+        <div class="group relative transform hover:scale-105 hover:translate-y-[-10px] transition-all duration-500 ease-out">
+          <!-- Card Background with Gradient -->
+          <div class="absolute inset-0 bg-white group-hover:bg-gradient-to-br group-hover:from-[#E100FF] group-hover:to-[#7F00FF] rounded-2xl shadow-md transition-all duration-500">
+            <!-- Animated Particles -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div class="absolute top-2 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-float1"></div>
+              <div class="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-white/30 rounded-full animate-float2"></div>
+              <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-white/20 rounded-full animate-float3"></div>
             </div>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-[#1a1a1a]">{service.title}</h3>
-          <p class="text-gray-500 mb-4 text-sm">{service.description}</p>
-          <a 
-            href={service.link} 
-            class="inline-flex items-center text-sm text-[#1a1a1a] font-medium hover:text-[hsl(274,54%,41%)] transition-colors"
-          >
-            Learn More 
-            <svg class="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M5 12h14m-7-7l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
+          
+          <!-- Card Content -->
+          <div class="relative p-8 text-gray-900 group-hover:text-white transition-colors duration-300">
+            <div class="mb-6">
+              <div class="w-12 h-12 rounded-full bg-[hsl(274,54%,41%)]/10 group-hover:bg-white/20 flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-500">
+                <svelte:component 
+                  this={service.icon} 
+                  class="w-6 h-6 text-[hsl(274,54%,41%)] group-hover:text-white transition-colors duration-300"
+                />
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-3 transform group-hover:translate-x-2 transition-transform duration-300">{service.title}</h3>
+            <p class="text-gray-600 group-hover:text-white/90 text-md leading-relaxed transition-all duration-300 mb-12">{service.description}</p>
+            
+            <!-- Order Now Button -->
+            <div class="absolute bottom-6 left-8">
+              <Button 
+                variant="outline" 
+                class="bg-transparent border border-gray-200 text-gray-700 group-hover:bg-white group-hover:text-[#E100FF] group-hover:border-transparent transition-all duration-300 rounded-full text-sm px-6"
+                href="/auth"
+              >
+                Order Now
+                <ArrowRight class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
+              </Button>
+            </div>
+          </div>
+
+          <!-- Card Border -->
+          <div class="absolute inset-0 border border-gray-100 group-hover:border-transparent rounded-2xl transition-colors duration-300"></div>
         </div>
       {/each}
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes float1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(10px, -10px) scale(1.2); }
+  }
+  
+  @keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-15px, -5px) scale(0.8); }
+  }
+  
+  @keyframes float3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(5px, -15px) scale(1.1); }
+  }
+
+  :global(.animate-float1) { animation: float1 4s ease-in-out infinite; }
+  :global(.animate-float2) { animation: float2 6s ease-in-out infinite; }
+  :global(.animate-float3) { animation: float3 5s ease-in-out infinite; }
+</style>
   
