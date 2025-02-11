@@ -38,7 +38,6 @@ declare module '$env/static/private' {
 	export const ComSpec: string;
 	export const CURSOR_TRACE_ID: string;
 	export const DriverData: string;
-	export const EFC_9744: string;
 	export const GIT_ASKPASS: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
@@ -88,7 +87,6 @@ declare module '$env/static/private' {
 	export const PSModulePath: string;
 	export const PUBLIC: string;
 	export const RegionCode: string;
-	export const SESSIONNAME: string;
 	export const SystemDrive: string;
 	export const SystemRoot: string;
 	export const TEMP: string;
@@ -149,7 +147,6 @@ declare module '$env/dynamic/private' {
 		ComSpec: string;
 		CURSOR_TRACE_ID: string;
 		DriverData: string;
-		EFC_9744: string;
 		GIT_ASKPASS: string;
 		HOME: string;
 		HOMEDRIVE: string;
@@ -199,7 +196,6 @@ declare module '$env/dynamic/private' {
 		PSModulePath: string;
 		PUBLIC: string;
 		RegionCode: string;
-		SESSIONNAME: string;
 		SystemDrive: string;
 		SystemRoot: string;
 		TEMP: string;

@@ -1,5 +1,11 @@
 {
 	"/": [
 		"src/routes/+page.server.ts"
+	],
+	"/order": [
+		"src/routes/order/+page.server.ts"
+	],
+	"/user": [
+		"src/routes/user/+page.server.ts"
 	]
 }

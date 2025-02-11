@@ -38,11 +38,11 @@
   }
 </script>
 
-<div class="bg-[#0B1120] text-white py-2">
-  <div class="container mx-auto px-4 flex justify-between items-center text-xs md:text-sm">
+<div class="bg-[#0B1120] text-white py-2  ">
+  <div class="container mx-auto px-4 flex text-[8px] md:text-xs justify-between items-center max-w-7xl  ">
     <div class="flex items-center space-x-6">
       {#each contactInfo as { Icon, text }}
-        <div class="flex items-center">
+        <div class="flex items-center ">
           <svelte:component this={Icon} class="w-4 h-4 mr-2" />
           <span>{text}</span>
         </div>

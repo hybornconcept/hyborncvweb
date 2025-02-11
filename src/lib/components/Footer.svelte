@@ -4,14 +4,14 @@
 </script>
 
 <footer class="w-full bg-slate-900">
-  <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-    <div class="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="px-4 pt-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div class="grid gap-8 row-gap-6 mb-6 sm:grid-cols-2 lg:grid-cols-4">
       <div class="sm:col-span-2 text-center sm:text-left">
         <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center justify-center sm:justify-start">
           <img src="hylogo2.png" alt="HybornCV" class="w-10 h-10" />
           <span class="ml-2 text-xl font-bold tracking-wide text-white">HybornCV</span>
         </a>
-        <div class="mt-6 hidden md:block lg:max-w-sm mx-auto sm:mx-0">
+        <div class="mt-4 hidden md:block lg:max-w-sm mx-auto sm:mx-0">
           <p class="text-sm text-white">
             Transforming careers through expert resume writing and professional branding services. Your success story starts with a compelling resume.
           </p>
@@ -76,7 +76,7 @@
         </p>
       </div>
     </div>
-    <div class="flex flex-col-reverse justify-between pt-5 pb-10 border-t border-gray-700 lg:flex-row text-xs md:text-sm">
+    <div class="flex flex-col-reverse justify-between pt-5 pb-4 border-t border-gray-700 lg:flex-row text-xs md:text-sm">
       <p class="  text-gray-300 text-center lg:text-left">
         © Copyright 2025 HybornCV. All rights reserved.
       </p>

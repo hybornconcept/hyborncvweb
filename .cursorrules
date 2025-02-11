@@ -21,6 +21,7 @@
    - Validate data flow between SvelteKit and PocketBase.
 4. **Fix and Test**:
    - Apply the fix and test thoroughly to ensure the issue is resolved.
+   - for the errors you will be solving now and going forward please first explain it before writting the logic and please do not stopp iterating till you get the solution
 5. **Document**:
    - Add comments or update documentation to prevent recurrence.
 

@@ -1,0 +1,13 @@
+information,Types
+PATIENT INFORMATION,step 1
+Career level,Select,Step 2
+inerest,Select
+others,Input
+services,checkbox,
+ADDITIONAL INFORMATION,step 2
+fullname,Input
+Phone:Input
+deadline: datepicker,
+COMMENTS &DOCUMENTS,step 3,
+Comments textarea,
+upload documents, file uploader
