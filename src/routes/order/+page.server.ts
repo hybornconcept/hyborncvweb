@@ -64,16 +64,29 @@ export const actions = {
                 }
             }
 
-            return {
-                form,
-                success: true,
-                orderId: order.id
-            };
+            // // Fetch the updated record
+            // const updatedOrder = await pb.collection('orders').getOne(order.id);
+
+            // return {
+            //     form: {
+            //         ...form,
+            //         data: {
+            //             ...form.data,
+            //             documents: files.map(file => ({
+            //                 name: file.name,
+            //                 size: file.size,
+            //                 type: file.type
+            //             }))
+            //         }
+            //     },
+            //     success: true,
+            //     orderId: updatedOrder.id
+            // };
 
         } catch (error) {
             console.error('Form submission error:', error);
             return fail(500, {
-                form,
+                // form,
                 error: error instanceof Error ? error.message : 'An unexpected error occurred'
             });
         }
