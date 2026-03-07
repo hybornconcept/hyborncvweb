@@ -1,111 +1,207 @@
 <script lang="ts">
-  import { Card } from "$lib/components/ui/card";
-  import { Button } from "$lib/components/ui/button";
-  import { Check } from "lucide-svelte";
+	import { Check, User } from 'lucide-svelte';
 
-  let plans = [
-    {
-      name: "Basic",
-      price: 10000,
-      oldPrice: 15000,
-      savePercent: "20",
-      features: ["Professional resume", "ATS optimisation", "Eye-catching formatting", "Cover Letter"],
-      included: [0, 1, 2, 3]
-    },
-    {
-      name: "Optimal", 
-      price: 25000,
-      oldPrice: 30000,
-      savePercent: "50",
-      tag: "Most popular",
-      features: ["Professional resume", "ATS optimisation", "Eye-catching formatting", "Cover Letter", "LinkedIn makeover"],
-      included: [0, 1, 2, 3, 4]
-    },
-    {
-      name: "All-in-one",
-      price: 40000,
-      oldPrice: 50000,
-      savePercent: "25",
-      features: ["Professional resume", "ATS optimisation", "Eye-catching formatting", "Cover Letter", "LinkedIn makeover", "Interview tips", "2 months support", "Resume in M-word format"],
-      included: [0, 1, 2, 3, 4, 5, 6]
-    }
-  ];
+	let plans = [
+		{
+			name: 'Basic Package',
+			price: '10,000',
+			oldPrice: '15,000',
+			savePercent: '33',
+			description: 'Essential resume writing service to get you started and noticed.',
+			features: [
+				'Professional resume',
+				'ATS optimisation',
+				'Modern professional design',
+				'Cover Letter'
+			],
+			isPopular: false,
+			height: 'min-h-[450px]'
+		},
+		{
+			name: 'Optimal Package',
+			price: '25,000',
+			oldPrice: '30,000',
+			savePercent: '50',
+			description: 'Comprehensive package for the modern job seeker.',
+			features: [
+				'Professional resume',
+				'ATS optimisation',
+				'Modern professional design',
+				'Cover Letter',
+				'LinkedIn makeover',
+				'Dedicated career consultant',
+				'Targeted job search strategy'
+			],
+			isPopular: true,
+			height: 'min-h-[580px]'
+		},
+		{
+			name: 'All-in-one Package',
+			price: '40,000',
+			oldPrice: '50,000',
+			savePercent: '20',
+			description: 'The complete career advancement toolkit for success.',
+			features: [
+				'Professional resume',
+				'ATS optimisation',
+				'Modern professional design',
+				'Cover Letter',
+				'LinkedIn makeover',
+				'Interview tips & coaching',
+				'Editable Word format',
+				'1-on-1 career strategy call',
+				'Executive recruiter distribution',
+				'Customized value proposition'
+			],
+			isPopular: false,
+			height: 'min-h-[650px]'
+		}
+	];
 
-  const getHeight = (name: string): string => {
-    const heights: Record<string, string> = {
-      'Basic': 'h-[425px]',
-      'Optimal': 'h-[480px]',
-      'All-in-one': 'h-[585px]'
-    };
-    return heights[name];
-  };
+	let isSubscription = false;
 </script>
 
-<section id="pricing" class="py-20 bg-white">
-  <div class="text-center mb-12">
-    <h2 class="text-4xl font-thin mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#E100FF] to-[#7F00FF]">Choose the best package for you</h2>
-    <p class="text-gray-400 text-lg font-thin">Get the Right Resume for Your Career</p>
-  </div>
+<section id="pricing" class="bg-gray-50/30 py-16 font-sans">
+	<div class="mx-auto max-w-7xl px-6 md:px-12 lg:px-8">
+		<div class="mb-8 text-center">
+			<h2
+				class="mb-4 bg-gradient-to-r from-[#E100FF] to-[#7F00FF] bg-clip-text text-3xl font-light tracking-tight text-transparent md:text-5xl"
+			>
+				Choose the best package for you
+			</h2>
+			<p class="mx-auto max-w-2xl text-lg text-gray-500">
+				Get the Right Resume for Your Career. Select a plan that aligns with your goals and level of
+				experience.
+			</p>
+		</div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-24 lg:px-6">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start max-w-5xl mx-auto">
-      {#each plans as plan}
-        <Card 
-          class={`
-            p-8 hover:shadow-2xl transition-all duration-300 relative overflow-hidden bg-white 
-            flex flex-col justify-between ${getHeight(plan.name)} border-[1px] mx-auto w-full max-w-sm
-            ${plan.name === 'Optimal' 
-              ? 'bg-gradient-to-br from-[#E100FF] to-[#7F00FF] p-[1.5px]' 
-              : 'border-gray-300'
-            }`}
-        >
-          <div class={plan.name === 'Optimal' ? 'bg-white h-full rounded-lg p-8 text-center md:text-left' : 'text-center md:text-left'}>
+		<!-- Toggle One Time/Subscription -->
+		<div class="mb-10 flex justify-center">
+			<div
+				class="inline-flex items-center rounded-full bg-white p-1 shadow-[0_2px_10px_rgb(0,0,0,0.05)] ring-1 ring-gray-100"
+			>
+				<button
+					class="rounded-full px-8 py-2.5 text-sm font-semibold transition-all {!isSubscription
+						? 'bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-white shadow-md'
+						: 'text-gray-500 hover:text-gray-900'}"
+					on:click={() => (isSubscription = false)}
+				>
+					One Time
+				</button>
+				<button
+					class="rounded-full px-8 py-2.5 text-sm font-semibold transition-all {isSubscription
+						? 'bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-white shadow-md'
+						: 'text-gray-500 hover:text-gray-900'}"
+					on:click={() => (isSubscription = true)}
+				>
+					Subscription
+				</button>
+			</div>
+		</div>
 
-            <div>
-              {#if plan.tag}
-                <div class="absolute top-4 right-4 bg-black text-white text-xs px-3 py-1 rounded-full">{plan.tag}</div>
-              {/if}
+		<div class="mx-auto grid max-w-6xl grid-cols-1 items-start gap-8 md:grid-cols-3">
+			{#each plans as plan}
+				{#if plan.isPopular}
+					<!-- Optimal Package with Gradient Background -->
+					<div
+						class="relative flex w-full flex-col rounded-[1.8rem] bg-gradient-to-br from-[#E100FF] to-[#7F00FF] p-8 text-white shadow-2xl transition-all duration-300"
+					>
+						<div class="mb-8">
+							<div class="mb-4 flex items-center justify-between">
+								<div class="flex items-baseline">
+									<span class="text-[2rem] font-bold tracking-tight text-white">₦{plan.price}</span>
+									<span class="ml-2 text-sm text-white/70 line-through">
+										₦{plan.oldPrice}
+									</span>
+								</div>
+								<span
+									class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-bold text-[#7F00FF]"
+								>
+									Save {plan.savePercent}%
+								</span>
+							</div>
+							<h3 class="mb-2 text-xl font-extrabold tracking-tight text-white">
+								{plan.name}
+							</h3>
+							<p class="text-sm leading-relaxed text-white/80">
+								{plan.description}
+							</p>
+						</div>
 
-              <div class="flex justify-center md:justify-between items-center mb-6">
-                <h3 class="text-xl font-bold">{plan.name}</h3>
-              </div>
+						<ul class="mb-6 flex-1 space-y-4">
+							{#each plan.features as feature}
+								<li class="flex items-start">
+									<div
+										class="mr-3 mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-white text-[#7F00FF]"
+									>
+										<Check class="h-3 w-3 stroke-[3]" />
+									</div>
+									<span class="text-sm text-white/90">
+										{feature}
+									</span>
+								</li>
+							{/each}
+						</ul>
 
-              <div class="mb-8">
-                <div class="flex items-baseline justify-center md:justify-start">
-                  <span class="text-xl font-medium">₦</span>
-                  <span class="text-5xl font-bold mx-1">{plan.price}</span>
-                  {#if plan.oldPrice}
-                    <span class="text-gray-400 line-through ml-2">₦{plan.oldPrice}</span>
-                  {/if}
-                </div>
-                <div class="flex items-center gap-2 mt-1 justify-center md:justify-start">
-                  <p class="text-gray-500 text-sm">/one-time payment</p>
-                  <div class="bg-[#E7F9F1] text-[#12B76A] text-xs px-3 py-1 rounded-full font-medium">
-                    Save {plan.savePercent}%
-                  </div>
-                </div>
-              </div>
+						<a
+							href="/auth"
+							class="mt-auto flex w-full items-center justify-center rounded-full bg-white py-3.5 text-sm font-bold text-[#7F00FF] transition-all hover:bg-gray-50"
+						>
+							<User class="mr-2 h-4 w-4" />
+							Choose Your Plan
+						</a>
+					</div>
+				{:else}
+					<!-- Other Packages with Gradient Border -->
+					<div
+						class="group relative w-full rounded-[1.8rem] bg-gradient-to-br from-[#E100FF] to-[#7F00FF] p-[2px] transition-all duration-300 hover:shadow-xl"
+					>
+						<div class="flex h-full flex-col rounded-[calc(1.8rem-2px)] bg-white p-8 {plan.height}">
+							<div class="mb-8">
+								<div class="mb-4 flex items-center justify-between">
+									<div class="flex items-baseline">
+										<span class="text-[2rem] font-bold tracking-tight text-gray-900"
+											>₦{plan.price}</span
+										>
+										<span class="ml-2 text-sm text-gray-400 line-through">
+											₦{plan.oldPrice}
+										</span>
+									</div>
+								</div>
+								<h3 class="mb-2 text-xl font-extrabold tracking-tight text-gray-900">
+									{plan.name}
+								</h3>
+								<p class="text-sm leading-relaxed text-gray-500">
+									{plan.description}
+								</p>
+							</div>
 
-              <div class="space-y-4">
-                {#each plan.features as feature, index}
-                  <div class="flex items-center justify-center md:justify-start">
-                    <div class="w-5 h-5 rounded-full flex items-center justify-center mr-3">
-                      <Check class="w-3 h-3 text-[#E100FF]" />
-                    </div>
-                    <span class="text-gray-600">{feature}</span>
-                  </div>
-                {/each}
-              </div>
-            </div>
+							<ul class="mb-6 flex-1 space-y-4">
+								{#each plan.features as feature}
+									<li class="flex items-start">
+										<div
+											class="mr-3 mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] text-white"
+										>
+											<Check class="h-3 w-3 stroke-[3]" />
+										</div>
+										<span class="text-sm text-gray-600">
+											{feature}
+										</span>
+									</li>
+								{/each}
+							</ul>
 
-            <div class="my-6">
-              <Button class="w-full bg-gradient-to-r from-[#E100FF] to-[#7F00FF] hover:opacity-90 border-0 mb-4 text-white rounded-full py-6">
-                Order now
-              </Button>
-            </div>
-          </div>
-        </Card>
-      {/each}
-    </div>
-  </div>
+							<a
+								href="/auth"
+								class="mt-auto flex w-full items-center justify-center rounded-full border-2 border-transparent bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-border py-3.5 text-sm font-bold text-white transition-all hover:opacity-90"
+							>
+								<User class="mr-2 h-4 w-4" />
+								Choose Your Plan
+							</a>
+						</div>
+					</div>
+				{/if}
+			{/each}
+		</div>
+	</div>
 </section>

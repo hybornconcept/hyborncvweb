@@ -1,140 +1,178 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
-  import { cn } from "$lib/utils";
-  import { Twitter, FacebookIcon, Instagram, Phone, Mail, Clock } from 'lucide-svelte';
-  import { browser } from '$app/environment';
+	import { cn } from '$lib/utils';
+	import { User, Menu, X, Twitter, Facebook, Instagram, Phone, Mail, Clock } from 'lucide-svelte';
+	import { slide } from 'svelte/transition';
+	import { browser } from '$app/environment';
+	let isMenuOpen = false;
+	let scrollY = 0;
 
-  let isMenuOpen = false;
+	const contactInfo = [
+		{ Icon: Phone, text: '+234 706 515 5036' },
+		{ Icon: Mail, text: 'info@hyborncv.com' },
+		{ Icon: Clock, text: 'Available 24 hours' }
+	];
 
-  function scrollToSection(id: string) {
-    if (!browser) return;
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
+	const socialLinks = [
+		{ Icon: Twitter, href: 'https://twitter.com/hyborncv', label: 'Twitter' },
+		{ Icon: Facebook, href: 'https://facebook.com/hyborncv', label: 'Facebook' },
+		{ Icon: Instagram, href: 'https://instagram.com/hyborncv', label: 'Instagram' }
+	];
 
-  const navItems = [
-    { href: "/", label: "Home", current: true },
-    { href: "#services", label: "Services", current: false, scroll: true },
-    { href: "#pricing", label: "Pricing", current: false, scroll: true },
-    { href: "#testimonials", label: "Testimonial", current: false, scroll: true },
-  ];
+	const navItems = [
+		{ href: '#home', label: 'Home' },
+		{ href: '#services', label: 'Our services' },
+		{ href: '#features', label: 'Features' },
+		{ href: '#pricing', label: 'Pricing' },
+		{ href: '#testimonials', label: 'Testimonials' },
+		{ href: '/auth?signup=true', label: 'Sign up' }
+	];
 
-  const contactInfo = [
-    { Icon: Phone, text: "+234 706 515 5036" },
-    { Icon: Mail, text: "info@hyborncv.com" },
-    { Icon: Clock, text: "Available 24 hours" }
-  ];
+	function scrollToSection(e: MouseEvent, href: string) {
+		if (href.startsWith('#')) {
+			e.preventDefault();
+			const el = document.querySelector(href);
+			if (el) {
+				const offset = 80; // height of fixed header + buffer
+				const bodyRect = document.body.getBoundingClientRect().top;
+				const elementRect = el.getBoundingClientRect().top;
+				const elementPosition = elementRect - bodyRect;
+				const offsetPosition = elementPosition - offset;
 
-  const socialLinks = [
-    { Icon: Twitter, href: "https://twitter.com/hyborncv", label: "Twitter" },
-    { Icon: FacebookIcon, href: "https://facebook.com/hyborncv", label: "Facebook" },
-    { Icon: Instagram, href: "https://instagram.com/hyborncv", label: "Instagram" }
-  ];
-
-  $effect: if (browser) {
-    document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
-  }
+				window.scrollTo({
+					top: offsetPosition,
+					behavior: 'smooth'
+				});
+				isMenuOpen = false;
+			}
+		}
+	}
 </script>
 
-<div class="bg-[#0B1120] text-white py-2  ">
-  <div class="container mx-auto px-4 flex text-[8px] md:text-xs justify-between items-center max-w-7xl  ">
-    <div class="flex items-center space-x-6">
-      {#each contactInfo as { Icon, text }}
-        <div class="flex items-center ">
-          <svelte:component this={Icon} class="w-4 h-4 mr-2" />
-          <span>{text}</span>
-        </div>
-      {/each}
-    </div>
-    <div class="flex items-center space-x-4">
-      <span>Follow</span>
-      {#each socialLinks as { Icon, href, label }}
-        <a {href} class="hover:text-gray-300" aria-label={label}>
-          <svelte:component this={Icon} class="w-4 h-4" />
-        </a>
-      {/each}
-    </div>
-  </div>
-</div>
+<svelte:window bind:scrollY />
 
-<header class="h-[9vh] lg:h-[10vh]">
-  <div class="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-    <div class="relative flex items-center justify-between">
-      <a href="/" class="flex items-center space-x-2">
-        <img src="hylogo2.png" alt="logo" class="w-10 h-10" />
-        <span class="text-xl font-bold">HybornCV</span>
-      </a>
+<nav
+	class={cn(
+		'fixed left-0 right-0 top-0 z-50 w-full font-sans transition-all duration-500',
+		scrollY > 50 ? 'bg-white/95 shadow-md backdrop-blur-md' : 'bg-transparent'
+	)}
+>
+	<!-- Top Bar - Animated height -->
+	<div
+		class={cn(
+			'overflow-hidden bg-[#0B1120] text-white transition-all duration-300',
+			scrollY > 50 ? 'h-0 opacity-0' : 'h-8 py-1.5 opacity-100'
+		)}
+	>
+		<div
+			class="mx-auto flex max-w-7xl items-center justify-center px-4 text-[10px] sm:text-xs md:justify-end"
+		>
+			<div class="mr-6 flex items-center space-x-3 sm:space-x-4 lg:mr-10">
+				<span class="font-medium text-white">Follow</span>
+				{#each socialLinks as { Icon, href, label }}
+					<a {href} class="transition-colors hover:text-white" aria-label={label}>
+						<svelte:component this={Icon} class="h-[14px] w-[14px]" stroke-width="2.5" />
+					</a>
+				{/each}
+			</div>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:block flex-1 max-w-2xl mx-auto">
-        <div class="flex justify-center gap-x-6">
-          {#each navItems as { href, label, current, scroll }}
-            <a 
-              {href}
-              on:click|preventDefault={scroll ? () => scrollToSection(href.slice(1)) : undefined}
-              class={cn(
-                "py-2 px-1 inline-flex items-center gap-2 border-b-2 text-sm whitespace-nowrap transition-colors",
-                current 
-                  ? "border-[hsl(274,54%,41%)] text-[hsl(274,54%,41%)] font-medium" 
-                  : "border-transparent text-gray-500 hover:text-[hsl(274,54%,41%)] hover:border-[hsl(274,54%,41%)]/50"
-              )}
-              aria-current={current ? "page" : undefined}
-            >
-              {label}
-            </a>
-          {/each}
-        </div>
-      </nav>
+			<div class="flex items-center space-x-4 sm:space-x-6">
+				{#each contactInfo as { Icon, text }, i}
+					<div class="flex items-center {i === 2 ? 'hidden md:flex' : ''}">
+						<svelte:component this={Icon} class="mr-1.5 h-[14px] w-[14px]" />
+						<span>{text}</span>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</div>
 
-      <!-- Auth Buttons -->
-      <div class="hidden lg:flex items-center space-x-4">
-        <Button variant="ghost" href="/auth">Sign In</Button>
-        <Button 
-          href="/auth?signup=true" 
-          class="bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-white hover:opacity-90 text-sm px-4 py-3 rounded-full"
-        >
-          Get Started
-        </Button>
-      </div>
+	<!-- Main Header -->
+	<header
+		class={cn(
+			'mx-auto flex max-w-7xl items-center justify-between px-4 transition-all duration-300',
+			scrollY > 50 ? 'h-16' : 'h-20'
+		)}
+	>
+		<!-- Left Logo -->
+		<a href="/" class="group flex items-center gap-1 transition-all">
+			<img src="logo.png" alt="HybornCV Logo" class="h-10 w-10 object-contain md:h-10 md:w-10" />
+			<span
+				class="text-md bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text font-bold tracking-[0.05em] text-transparent md:text-xl"
+			>
+				HYBORN<span
+					class="inline-block translate-y-[0.2em] text-[0.8em] font-light tracking-wider text-[#E100FF]"
+					>CV</span
+				>
+			</span>
+		</a>
 
-      <button
-        class="lg:hidden p-2 -mr-1"
-        on:click={() => (isMenuOpen = !isMenuOpen)}
-        aria-label="Toggle Menu"
-      >
-        <svg class="w-6 h-6" stroke="currentColor" viewBox="0 0 24 24">
-          <path 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            stroke-width="2" 
-            d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-          />
-        </svg>
-      </button>
-    </div>
+		<!-- Center Nav -->
+		<nav class="hidden items-center space-x-12 text-sm font-medium xl:flex">
+			{#each navItems as item}
+				<a
+					href={item.href}
+					onclick={(e) => scrollToSection(e, item.href)}
+					class={cn(
+						'transition-all duration-300',
+						scrollY > 50
+							? 'text-gray-600 hover:bg-gradient-to-br hover:from-[#E100FF] hover:to-[#7F00FF] hover:bg-clip-text hover:text-transparent'
+							: 'text-gray-800 hover:bg-gradient-to-br hover:from-[#E100FF] hover:to-[#7F00FF] hover:bg-clip-text hover:text-transparent'
+					)}>{item.label}</a
+				>
+			{/each}
+		</nav>
 
-    {#if isMenuOpen}
-      <nav class="lg:hidden absolute top-full left-0 right-0 bg-background border-b px-4 py-4 space-y-4">
-        {#each navItems as { href, label }}
-          <a
-            {href}
-            class="block text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            {label}
-          </a>
-        {/each}
-        <div class="pt-4 space-y-2">
-          <Button variant="outline" class="w-full justify-start">Login</Button>
-          <Button 
-            href="/auth?signup=true" 
-            class="w-full justify-start bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-white hover:opacity-90 border-0"
-          >
-            Get Started
-          </Button>
-        </div>
-      </nav>
-    {/if}
-  </div>
-</header>
+		<!-- Right Actions -->
+		<div class="flex items-center gap-4">
+			<div class="hidden items-center md:flex">
+				<a
+					href="/auth"
+					class="flex items-center gap-2 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#8566FF]/20 transition-all hover:scale-105"
+				>
+					<div class="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white">
+						<User class="h-3 w-3" stroke-width="3" />
+					</div>
+					Sign in
+				</a>
+			</div>
+
+			<!-- Mobile Menu Toggle -->
+			<button
+				class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] text-white shadow-lg transition-all hover:scale-110 xl:hidden"
+				aria-label="Toggle Menu"
+				onclick={() => (isMenuOpen = !isMenuOpen)}
+			>
+				{#if isMenuOpen}
+					<X class="h-5 w-5" />
+				{:else}
+					<Menu class="h-5 w-5" />
+				{/if}
+			</button>
+		</div>
+	</header>
+
+	<!-- Mobile menu dropdown -->
+	{#if isMenuOpen}
+		<div
+			transition:slide={{ duration: 400 }}
+			class="absolute left-0 right-0 top-full flex flex-col space-y-4 border-b bg-white px-4 py-4 shadow-lg xl:hidden"
+		>
+			{#each navItems as item}
+				<a
+					href={item.href}
+					onclick={(e) => scrollToSection(e, item.href)}
+					class="py-2 font-medium text-gray-600 hover:text-gray-900">{item.label}</a
+				>
+			{/each}
+			<div class="border-t pt-4">
+				<a
+					href="/auth"
+					class="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] py-3 font-bold text-white shadow-lg"
+				>
+					<User class="h-4 w-4" />
+					Sign in
+				</a>
+			</div>
+		</div>
+	{/if}
+</nav>

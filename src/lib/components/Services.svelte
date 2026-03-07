@@ -1,114 +1,150 @@
-<script>
-  import { Button } from "$lib/components/ui/button";
+<script lang="ts">
+	import { Wrench, MapPin, Zap, Layout, User, Calendar, ArrowRight } from 'lucide-svelte';
 
-  import { Wrench, MapPin, Zap, Layout, User, Calendar, ArrowRight } from "lucide-svelte";
-
-  const services = [
-    {
-      icon: Wrench,
-      title: "Professional Resume/CV Writing",
-      description: "ATS-optimized resumes that highlight your achievements and get you noticed by top employers. 98% interview success rate!"
-    },
-    {
-      icon: MapPin,
-      title: "Cover Letter Writing Services", 
-      description: "Compelling cover letters that tell your career story and make you stand out from other candidates."
-    },
-    {
-      icon: Zap,
-      title: "Statement of Purpose/ Letter of Intent/Sustainability",
-      description: "Persuasive statements that showcase your goals, achievements and fit for your Masters or PhD program Abroad."
-    },
-    {
-      icon: Layout,
-      title: "Linkedin Profile Makeover",
-      description: "SEO-optimized LinkedIn profiles that attract recruiters and unlock hidden job opportunities."
-    },
-    {
-      icon: User,
-      title: "Web based Portfolio creation",
-      description: "Eye-catching online portfolios that showcase your work and personal brand to potential employers."
-    },
-    {
-      icon: Calendar,
-      title: "Interview tips & Preparation",
-      description: "Expert coaching  to help you ace interviews and negotiate the best compensation package."
-    }
-  ];
+	const services = [
+		{
+			icon: Wrench,
+			title: 'Professional Resume/CV Writing',
+			description:
+				'ATS-optimized resumes that highlight your achievements and get you noticed by top employers. 98% interview success rate!'
+		},
+		{
+			icon: MapPin,
+			title: 'Cover Letter Writing Services',
+			description:
+				'Compelling cover letters that tell your career story and make you stand out from other candidates.'
+		},
+		{
+			icon: Zap,
+			title: 'Statement of Purpose/Letter of Intent/Sustainability',
+			description:
+				'Persuasive statements that showcase your goals, achievements and fit for your Masters or PhD program Abroad.'
+		},
+		{
+			icon: Layout,
+			title: 'Linkedin Profile Makeover',
+			description:
+				'SEO-optimized LinkedIn profiles that attract recruiters and unlock hidden job opportunities.'
+		},
+		{
+			icon: User,
+			title: 'Web based Portfolio creation',
+			description:
+				'Eye-catching online portfolios that showcase your work and personal brand to potential employers.'
+		},
+		{
+			icon: Calendar,
+			title: 'Interview tips & Preparation',
+			description:
+				'Expert coaching to help you ace interviews and negotiate the best compensation package.'
+		}
+	];
 </script>
 
-<section id="services" class="py-20 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-12 sm:px-6 md:px-24 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-sm text-gray-400  font-normal mb-4">Our Services</h2>
-      <p class="text-5xl font-extralight bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-transparent bg-clip-text">What we really do.</p>
-    </div>
+<section id="services" class="bg-white py-24 font-sans">
+	<div class="mx-auto max-w-7xl px-14 md:px-20 lg:px-32">
+		<div class="mb-20 text-center">
+			<p class="mb-2 text-sm font-light tracking-tight text-gray-400">Our Services</p>
+			<h2
+				class="bg-gradient-to-r from-[#E100FF] to-[#7F00FF] bg-clip-text text-2xl font-light tracking-tight text-transparent md:text-4xl"
+			>
+				What we really do.
+			</h2>
+		</div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      {#each services as service}
-        <div class="group relative transform hover:scale-105 hover:translate-y-[-10px] transition-all duration-500 ease-out">
-          <!-- Card Background with Gradient -->
-          <div class="absolute inset-0 bg-white group-hover:bg-gradient-to-br group-hover:from-[#E100FF] group-hover:to-[#7F00FF] rounded-2xl shadow-md transition-all duration-500">
-            <!-- Animated Particles -->
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <div class="absolute top-2 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-float1"></div>
-              <div class="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-white/30 rounded-full animate-float2"></div>
-              <div class="absolute bottom-1/4 left-1/3 w-1 h-1 bg-white/20 rounded-full animate-float3"></div>
-            </div>
-          </div>
-          
-          <!-- Card Content -->
-          <div class="relative p-8 text-gray-900 group-hover:text-white transition-colors duration-300">
-            <div class="mb-6">
-              <div class="w-12 h-12 rounded-full bg-[hsl(274,54%,41%)]/10 group-hover:bg-white/20 flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-500">
-                <svelte:component 
-                  this={service.icon} 
-                  class="w-6 h-6 text-[hsl(274,54%,41%)] group-hover:text-white transition-colors duration-300"
-                />
-              </div>
-            </div>
-            <h3 class="text-2xl font-bold mb-3 transform group-hover:translate-x-2 transition-transform duration-300">{service.title}</h3>
-            <p class="text-gray-600 group-hover:text-white/90 text-md leading-relaxed transition-all duration-300 mb-12">{service.description}</p>
-            
-            <!-- Order Now Button -->
-            <div class="absolute bottom-6 left-8">
-              <Button 
-                variant="outline" 
-                class="bg-transparent border border-gray-200 text-gray-700 group-hover:bg-white group-hover:text-[#E100FF] group-hover:border-transparent transition-all duration-300 rounded-full text-sm px-6"
-                href="/auth"
-              >
-                Order Now
-                <ArrowRight class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-            </div>
-          </div>
+		<div class="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+			{#each services as service}
+				<a
+					href="/auth"
+					class="group relative mt-6 flex h-full w-full cursor-pointer flex-col drop-shadow-md transition-all duration-300 hover:drop-shadow-2xl"
+				>
+					<!-- Folder Tab (Gradient outline, white background) -->
+					<div
+						class="absolute -top-6 left-0 z-10 h-[26px] w-7/12 overflow-hidden rounded-t-xl bg-gradient-to-r from-[#E100FF] to-[#7F00FF] p-[2px] transition-all duration-300 group-hover:p-0 sm:w-5/12"
+					>
+						<div
+							class="h-full w-full rounded-t-[calc(0.75rem-2px)] bg-white transition-all duration-300 group-hover:bg-transparent"
+						>
+							<!-- Slide-in background for Tab -->
+							<div
+								class="absolute inset-0 -translate-x-full translate-y-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] transition-transform duration-700 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0"
+							></div>
 
-          <!-- Card Border -->
-          <div class="absolute inset-0 border border-gray-100 group-hover:border-transparent rounded-2xl transition-colors duration-300"></div>
-        </div>
-      {/each}
-    </div>
-  </div>
+							<!-- Subtle decorative dot on the tab -->
+							<div
+								class="absolute right-3 top-[8px] z-20 h-1.5 w-1.5 rounded-full bg-gray-200 transition-colors duration-300 group-hover:bg-white/30"
+							></div>
+						</div>
+					</div>
+
+					<!-- Gap Cover -->
+					<div
+						class="absolute left-[2px] top-0 z-20 h-[3px] w-[calc(58.333333%-4px)] bg-white transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#E100FF] group-hover:to-[#7F00FF] sm:w-[calc(41.666667%-4px)]"
+					></div>
+
+					<!-- Overlapping Big Icon on the Right -->
+					<div
+						class="absolute -right-4 -top-10 z-30 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] text-white shadow-xl shadow-[#7F00FF]/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-white group-hover:bg-none group-hover:text-[#7F00FF] group-hover:shadow-[#E100FF]/50"
+					>
+						<svelte:component this={service.icon} class="h-8 w-8" strokeWidth={1} />
+					</div>
+
+					<!-- Folder Main Body -->
+					<div
+						class="relative z-0 flex flex-grow flex-col overflow-hidden rounded-[2rem] rounded-tl-none bg-gradient-to-br from-[#E100FF] to-[#7F00FF] p-[2px] transition-all duration-300 group-hover:p-0"
+					>
+						<div
+							class="relative flex h-full flex-grow flex-col rounded-[calc(2rem-2px)] rounded-tl-none bg-white px-5 py-3 transition-all duration-300 group-hover:bg-transparent"
+						>
+							<!-- Slide-in background for Main Body -->
+							<div
+								class="absolute inset-0 z-0 -translate-x-full translate-y-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] transition-transform duration-700 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0"
+							></div>
+
+							<!-- Content Wrapper (Ensures text stays above slide-in bg) -->
+							<div class="relative z-10 flex h-full flex-col">
+								<!-- Title -->
+								<div class="mb-2 mt-1.5 pr-10">
+									<h3
+										class="font-mono text-lg font-normal leading-tight text-[#7F00FF] transition-colors duration-300 group-hover:text-white"
+									>
+										{service.title}
+									</h3>
+								</div>
+
+								<p
+									class="mb-1 flex-grow text-sm leading-relaxed text-gray-500 transition-colors duration-300 group-hover:text-white/90"
+								>
+									{service.description}
+								</p>
+
+								<div class="mt-auto pt-0">
+									<span
+										class="inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] px-5 text-xs text-white transition-all duration-300 group-hover:bg-white group-hover:bg-none"
+									>
+										<span
+											class="font-bold transition-all group-hover:bg-gradient-to-r group-hover:from-[#E100FF] group-hover:to-[#7F00FF] group-hover:bg-clip-text group-hover:text-transparent"
+										>
+											Order Now
+										</span>
+										<ArrowRight
+											class="ml-2 h-3 w-3 transition-all group-hover:translate-x-1 group-hover:text-[#7F00FF]"
+										/>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			{/each}
+		</div>
+	</div>
 </section>
 
 <style>
-  @keyframes float1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(10px, -10px) scale(1.2); }
-  }
-  
-  @keyframes float2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-15px, -5px) scale(0.8); }
-  }
-  
-  @keyframes float3 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(5px, -15px) scale(1.1); }
-  }
-
-  :global(.animate-float1) { animation: float1 4s ease-in-out infinite; }
-  :global(.animate-float2) { animation: float2 6s ease-in-out infinite; }
-  :global(.animate-float3) { animation: float3 5s ease-in-out infinite; }
+	/* Fine-tuning for crisp folder outline rendering */
+	section {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 </style>
-  
