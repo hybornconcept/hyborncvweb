@@ -20,11 +20,11 @@
 
 	const navItems = [
 		{ href: '#home', label: 'Home' },
-		{ href: '#services', label: 'Our services' },
-		{ href: '#features', label: 'Features' },
+		{ href: '#features', label: 'Why Us' },
+		{ href: '#services', label: 'Services' },
 		{ href: '#pricing', label: 'Pricing' },
 		{ href: '#testimonials', label: 'Testimonials' },
-		{ href: '/auth?signup=true', label: 'Sign up' }
+		{ href: '#contact', label: 'Contact us' }
 	];
 
 	function scrollToSection(e: MouseEvent, href: string) {
@@ -127,12 +127,14 @@
 			<div class="hidden items-center md:flex">
 				<a
 					href="/auth"
-					class="flex items-center gap-2 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#8566FF]/20 transition-all hover:scale-105"
+					class="group flex items-center gap-2 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#8566FF]/20 transition-all"
 				>
-					<div class="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white">
+					<div
+						class="bounce-icon flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-white"
+					>
 						<User class="h-3 w-3" stroke-width="3" />
 					</div>
-					Sign in
+					<span class="bounce-text">Sign in</span>
 				</a>
 			</div>
 
@@ -167,12 +169,53 @@
 			<div class="border-t pt-4">
 				<a
 					href="/auth"
-					class="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] py-3 font-bold text-white shadow-lg"
+					class="group flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] py-3 font-bold text-white shadow-lg"
 				>
-					<User class="h-4 w-4" />
-					Sign in
+					<span class="bounce-icon">
+						<User class="h-4 w-4" />
+					</span>
+					<span class="bounce-text">Sign in</span>
 				</a>
 			</div>
 		</div>
 	{/if}
 </nav>
+
+<style>
+	@keyframes bounce-left {
+		0% {
+			transform: translateX(0);
+		}
+		35% {
+			transform: translateX(-10px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes bounce-right {
+		0% {
+			transform: translateX(0);
+		}
+		35% {
+			transform: translateX(10px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	.bounce-icon,
+	.bounce-text {
+		transition: transform 0.3s ease;
+	}
+
+	.group:hover .bounce-icon {
+		animation: bounce-left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+	}
+
+	.group:hover .bounce-text {
+		animation: bounce-right 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+	}
+</style>

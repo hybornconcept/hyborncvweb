@@ -53,7 +53,7 @@
 			<h2
 				class="bg-gradient-to-r from-[#E100FF] to-[#7F00FF] bg-clip-text text-2xl font-light tracking-tight text-transparent md:text-6xl lg:text-[2.5rem]"
 			>
-				Why Choose Hyborn US
+				Why Choose Hyborn CV
 			</h2>
 		</div>
 

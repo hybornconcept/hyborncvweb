@@ -1,6 +1,5 @@
 // Define the available services
 export const careerlevelOptions = [
-    { value: "Select your career level", label: "Select your career level" },
     { value: "entry-level", label: "Entry-Level" },
     { value: "mid-level", label: "Mid-Level" },
     { value: "senior-level", label: "Senior-Level" },
@@ -10,11 +9,10 @@ export const careerlevelOptions = [
     { value: "internship", label: "Internship" },
     { value: "director-level", label: "Director-Level" },
     { value: "ceo-level", label: "CEO/President-Level" },
-] 
+]
 
 
 export const interestOptions = [
-    { value: "Select your Interest", label: "Select your Interest" },
     { value: "Medical Doctor", label: "Medical Doctor" },
     { value: "Nurse", label: "Nurse" },
     { value: "Medical Sales Rep", label: "Medical Sales Rep" },
@@ -51,36 +49,50 @@ export const interestOptions = [
 ]
 
 export const additional = [
-    { id: "careerCoaching", label: "Career Coaching", price: 125.98 },
-    { id: "coverLetter", label: "Cover Letter Writing", price: 59.00 },
-    { id: "thankYouLetter", label: "Thank-You Letter Writing", price: 49.00 },
-    { id: "followUpLetter", label: "Follow-Up Letter Writing", price: 49.00 },
-    { id: "linkedinProfile", label: "LinkedIn Profile Makeover", price: 89.00 },
-    { id: "ksa", label: "KSA (Knowledge, Skills, and Abilities)", price: 59.00 }
+    { id: "careerCoaching", label: "Career Coaching", price: 25000 },
+    { id: "interviewTips", label: "Interview Tips", price: 15000 },
+    { id: "sustainabilityLetter", label: "Sustainability Letter", price: 12000 },
+    { id: "followUpLetter", label: "Follow-Up Letter Writing", price: 10000 },
+    { id: "linkedinProfileMakeover", label: "LinkedIn Profile Makeover", price: 20000 },
+    { id: "ksa", label: "KSA (Knowledge, Skills, and Abilities)", price: 18000 },
+    { id: "executiveBio", label: "Executive Bio Writing", price: 30000 },
+    { id: "professionalBiography", label: "Professional Biography", price: 25000 },
+    { id: "coldEmail", label: "Cold Email Template for Recruiters", price: 8000 },
+    { id: "linkedinOptimization", label: "LinkedIn Profile Optimization", price: 22000 },
+    { id: "githubReview", label: "GitHub Profile Review (for Tech Roles)", price: 15000 },
+    { id: "personalWebsite", label: "Personal Website/Portfolio Setup", price: 75000 },
+    { id: "jobSearchStrategy", label: "Job Search Strategy Session", price: 20000 },
+    { id: "salaryNegotiation", label: "Salary Negotiation Coaching", price: 18000 },
+    { id: "networkingStrategy", label: "Networking Strategy Coaching", price: 18000 },
+    { id: "freeReview", label: "Free Resume Review / Critique", price: 0 },
+    { id: "resumeScore", label: "Resume Score & Analysis Report", price: 8000 },
+    { id: "skillsGap", label: "Skills Gap Assessment", price: 15000 },
+    { id: "industryResume", label: "Industry-Specific Resume (Healthcare, Tech, etc)", price: 35000 },
+    { id: "expressDelivery", label: "Express / Expedited Delivery (Within 24 Hours)", price: 10000 },
+    { id: "unlimitedRevisions", label: "Unlimited Revisions Add-on", price: 12000 }
 ]
 
 export const packageOptions = [
-    { value: "select", label: "Select a package", price: 0 },
     { value: "basic", label: "Basic package", price: 10000 },
     { value: "regular", label: "Regular package", price: 25000 },
     { value: "allinone", label: "All in One package", price: 40000 }
 ] as const;
 
 export const steps = [
-    { 
-        number: 1, 
-        title: "Fill in the form", 
-        description: "Provide your professional details." 
+    {
+        number: 1,
+        title: "Fill in the form",
+        description: "Provide your professional details."
     },
-    { 
-        number: 2, 
-        title: "Chat with writer", 
-        description: "Engage with a skilled resume writer." 
+    {
+        number: 2,
+        title: "Chat or call us",
+        description: "Engage with a skilled resume writer at <strong>07065155036</strong>."
     },
-    { 
-        number: 3, 
-        title: "Resume is ready", 
-        description: "Receive a professionally crafted resume." 
+    {
+        number: 3,
+        title: "Resume is ready",
+        description: "Receive a professionally crafted resume."
     }
 ] as const;
 
@@ -94,12 +106,27 @@ export function formatFileSize(bytes: number): string {
 
 // Export the service configuration
 export const additionalServicesConfig = {
-    careerCoaching: { price: 125.98, label: "Career Coaching" },
-    coverLetter: { price: 59.00, label: "Cover Letter Writing" },
-    thankYouLetter: { price: 49.00, label: "Thank-You Letter Writing" },
-    followUpLetter: { price: 49.00, label: "Follow-Up Letter Writing" },
-    linkedinProfile: { price: 89.00, label: "LinkedIn Profile Makeover" },
-    ksa: { price: 59.00, label: "KSA (Knowledge, Skills, and Abilities)" }
+    careerCoaching: { price: 25000, label: "Career Coaching" },
+    interviewTips: { price: 15000, label: "Interview Tips" },
+    sustainabilityLetter: { price: 12000, label: "Sustainability Letter" },
+    followUpLetter: { price: 10000, label: "Follow-Up Letter Writing" },
+    linkedinProfileMakeover: { price: 20000, label: "LinkedIn Profile Makeover" },
+    ksa: { price: 18000, label: "KSA (Knowledge, Skills, and Abilities)" },
+    executiveBio: { price: 30000, label: "Executive Bio Writing" },
+    professionalBiography: { price: 25000, label: "Professional Biography" },
+    coldEmail: { price: 8000, label: "Cold Email Template for Recruiters" },
+    linkedinOptimization: { price: 22000, label: "LinkedIn Profile Optimization" },
+    githubReview: { price: 15000, label: "GitHub Profile Review (for Tech Roles)" },
+    personalWebsite: { price: 75000, label: "Personal Website/Portfolio Setup" },
+    jobSearchStrategy: { price: 20000, label: "Job Search Strategy Session" },
+    salaryNegotiation: { price: 18000, label: "Salary Negotiation Coaching" },
+    networkingStrategy: { price: 18000, label: "Networking Strategy Coaching" },
+    freeReview: { price: 0, label: "Free Resume Review / Critique" },
+    resumeScore: { price: 8000, label: "Resume Score & Analysis Report" },
+    skillsGap: { price: 15000, label: "Skills Gap Assessment" },
+    industryResume: { price: 35000, label: "Industry-Specific Resume (Healthcare, Tech, etc)" },
+    expressDelivery: { price: 10000, label: "Express / Expedited Delivery (Within 24 Hours)" },
+    unlimitedRevisions: { price: 12000, label: "Unlimited Revisions Add-on" }
 }
 
 

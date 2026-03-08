@@ -1,6 +1,25 @@
 <script>
 	import { ArrowRight, Star, Award, Users } from 'lucide-svelte';
 	import StatsCard from '$lib/components/StatsCard.svelte';
+
+	function scrollToSection(e, href) {
+		if (href.startsWith('#')) {
+			e.preventDefault();
+			const el = document.querySelector(href);
+			if (el) {
+				const offset = 80;
+				const bodyRect = document.body.getBoundingClientRect().top;
+				const elementRect = el.getBoundingClientRect().top;
+				const elementPosition = elementRect - bodyRect;
+				const offsetPosition = elementPosition - offset;
+
+				window.scrollTo({
+					top: offsetPosition,
+					behavior: 'smooth'
+				});
+			}
+		}
+	}
 </script>
 
 <div
@@ -70,7 +89,7 @@
 				<h1
 					class="mb-5 text-[2.75rem] font-extrabold leading-[1.1] tracking-tight text-[#1a1a1a] md:text-6xl xl:text-[4rem]"
 				>
-					Build that<br />
+					Have that<br />
 					<span class="bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text text-transparent"
 						>Resume</span
 					>
@@ -84,31 +103,38 @@
 				<p
 					class="mx-auto mb-8 max-w-md text-sm font-normal leading-[1.8] text-gray-400 md:text-base lg:mx-0"
 				>
-					Get that resume expertly tailored to help you get that your dream job!
+					Get that resume expertly tailored to help you land your dream job!
 				</p>
 
 				<div class="mb-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
 					<a
-						href="/contact"
-						class="flex items-center gap-3 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] px-8 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-[#8566FF]/30"
+						href="#pricing"
+						on:click={(e) => scrollToSection(e, '#pricing')}
+						class="group flex items-center gap-3 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] px-8 py-3 text-sm font-bold text-white shadow-lg transition-all hover:shadow-[#8566FF]/30"
 					>
-						Contact us
-						<span class="rounded-full bg-white/20 p-1"><ArrowRight class="h-4 w-4" /></span>
+						<span class="bounce-text"> Get Resume </span>
+						<span class="bounce-icon rounded-full bg-white/20 p-1">
+							<ArrowRight class="h-4 w-4" />
+						</span>
 					</a>
 					<a
-						href="/about"
-						class="group relative flex items-center justify-center rounded-full bg-white p-[2px] transition-all hover:scale-105"
+						href="#contact"
+						on:click={(e) => scrollToSection(e, '#contact')}
+						class="group relative flex items-center justify-center rounded-full bg-white p-[2px] transition-all"
 					>
 						<div
 							class="absolute inset-0 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF]"
 						></div>
 						<div
-							class="relative flex h-full w-full items-center justify-center rounded-full bg-white px-8 py-3 transition-colors group-hover:bg-gray-50"
+							class="relative flex h-full w-full items-center justify-center gap-3 rounded-full bg-white px-8 py-3 transition-colors group-hover:bg-gray-50"
 						>
 							<span
-								class="bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text text-sm font-bold text-transparent"
+								class="bounce-text bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text text-sm font-bold text-transparent"
 							>
-								More Info
+								Contact us
+							</span>
+							<span class="bounce-icon">
+								<ArrowRight class="h-4 w-4 text-[#7F00FF]" />
 							</span>
 						</div>
 					</a>
@@ -180,3 +206,43 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	@keyframes bounce-left {
+		0% {
+			transform: translateX(0);
+		}
+		35% {
+			transform: translateX(-12px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes bounce-right {
+		0% {
+			transform: translateX(0);
+		}
+		35% {
+			transform: translateX(12px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+
+	.bounce-text,
+	.bounce-icon {
+		display: inline-block;
+		transition: transform 0.3s ease;
+	}
+
+	.group:hover .bounce-text {
+		animation: bounce-left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+	}
+
+	.group:hover .bounce-icon {
+		animation: bounce-right 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+	}
+</style>

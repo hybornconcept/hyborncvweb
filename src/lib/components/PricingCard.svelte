@@ -3,6 +3,7 @@
 
 	let plans = [
 		{
+			id: 'basic',
 			name: 'Basic Package',
 			price: '10,000',
 			oldPrice: '15,000',
@@ -18,6 +19,7 @@
 			height: 'min-h-[450px]'
 		},
 		{
+			id: 'regular',
 			name: 'Optimal Package',
 			price: '25,000',
 			oldPrice: '30,000',
@@ -36,6 +38,7 @@
 			height: 'min-h-[580px]'
 		},
 		{
+			id: 'allinone',
 			name: 'All-in-one Package',
 			price: '40,000',
 			oldPrice: '50,000',
@@ -144,11 +147,11 @@
 						</ul>
 
 						<a
-							href="/auth"
+							href="/order?package={plan.id}"
 							class="mt-auto flex w-full items-center justify-center rounded-full bg-white py-3.5 text-sm font-bold text-[#7F00FF] transition-all hover:bg-gray-50"
 						>
 							<User class="mr-2 h-4 w-4" />
-							Choose Your Plan
+							Order now
 						</a>
 					</div>
 				{:else}
@@ -192,11 +195,11 @@
 							</ul>
 
 							<a
-								href="/auth"
+								href="/order?package={plan.id}"
 								class="mt-auto flex w-full items-center justify-center rounded-full border-2 border-transparent bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-border py-3.5 text-sm font-bold text-white transition-all hover:opacity-90"
 							>
 								<User class="mr-2 h-4 w-4" />
-								Choose Your Plan
+								Order now
 							</a>
 						</div>
 					</div>

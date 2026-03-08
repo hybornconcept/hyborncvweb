@@ -8,14 +8,12 @@ import { fail } from '@sveltejs/kit';
 // const pb = new PocketBase('http://127.0.0.1:8090');
 
 export const load = (async () => {
-    const form = await superValidate(
-        { 
-            services: {},
-            status: 'pending',
-        }, 
-        zod(orderSchema)
-    );
-    
+    const form = await superValidate(zod(orderSchema), { errors: false });
+
+    // Set default values without triggering validation errors
+    form.data.services = {};
+    form.data.status = 'pending';
+
     return { form };
 }) satisfies PageServerLoad;
 
@@ -36,7 +34,7 @@ export const actions = {
                     initialData.append(key, value);
                 }
             }
-                  
+
             // Handle optional fields
             Object.entries(form.data).forEach(([key, value]) => {
                 if (key !== 'documents') {

@@ -3,9 +3,8 @@ import type { ZodSchema } from 'zod';
 
 // Define the schema for step 1
 const step1Schema = z.object({
+    jobtitle: z.string().min(1, "Job title is required"),
     careerlevel: z.string().min(1, "Career level is required"),
-    interest: z.string().min(1, "Interest is required"),
-    others: z.string().optional(),
     package: z.string().min(1, "Package is required"),
     services: z.record(z.string(), z.boolean()).optional(),
     deadline: z.string().min(1, "Deadline is required")
@@ -16,6 +15,7 @@ const step2Schema = z.object({
     fullname: z.string().min(1, "Full name is required"),
     phone: z.string().min(1, "Phone number is required"),
     comments: z.string().optional(),
+    joblink: z.string().optional(),
     documents: z.array(z.instanceof(File)).optional()
 });
 

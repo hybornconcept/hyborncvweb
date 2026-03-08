@@ -5,7 +5,7 @@
 	const currentYear = new Date().getFullYear();
 </script>
 
-<footer class="w-full bg-slate-900">
+<footer id="contact" class="w-full bg-slate-900">
 	<div class="mx-auto px-4 pt-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
 		<div class="row-gap-6 mb-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
 			<div class="text-center sm:col-span-2 sm:text-left">
@@ -19,14 +19,34 @@
 					<span class="ml-2 text-xl font-bold tracking-wide text-white">HybornCV</span>
 				</a>
 				<div class="mx-auto mt-4 hidden sm:mx-0 md:block lg:max-w-sm">
-					<p class="text-sm text-white">
+					<p class="text-sm text-gray-300">
 						Transforming careers through expert resume writing and professional branding services.
 						Your success story starts with a compelling resume.
 					</p>
-					<p class="mt-4 text-sm text-white">
-						We help professionals stand out in competitive job markets with ATS-optimized resumes
-						and strategic career guidance.
-					</p>
+
+					<!-- Newsletter Section -->
+					<div class="mt-8">
+						<p class="mb-4 text-base font-bold tracking-wide text-white">
+							Subscribe to our Newsletter
+						</p>
+						<form class="flex flex-col gap-2 sm:flex-row">
+							<input
+								type="email"
+								placeholder="Enter your email"
+								class="w-full rounded-full border-none bg-white px-4 py-2 text-sm text-gray-900 outline-none transition-all focus:ring-2 focus:ring-[#E100FF]"
+								required
+							/>
+							<button
+								type="submit"
+								class="whitespace-nowrap rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] px-6 py-2 text-sm font-bold text-white transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#8566FF]/30 active:scale-95"
+							>
+								Subscribe
+							</button>
+						</form>
+						<p class="mt-2 text-[10px] text-gray-400">
+							Join 5,000+ professionals getting career tips.
+						</p>
+					</div>
 				</div>
 			</div>
 			<div class="space-y-2 text-center text-xs sm:text-left md:text-sm">
