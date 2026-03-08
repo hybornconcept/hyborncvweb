@@ -108,8 +108,7 @@
 
 				<div class="mb-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
 					<a
-						href="#pricing"
-						on:click={(e) => scrollToSection(e, '#pricing')}
+						href="/order"
 						class="group flex items-center gap-3 rounded-full bg-gradient-to-br from-[#E100FF] to-[#7F00FF] px-8 py-3 text-sm font-bold text-white shadow-lg transition-all hover:shadow-[#8566FF]/30"
 					>
 						<span class="bounce-text"> Get Resume </span>
@@ -119,7 +118,7 @@
 					</a>
 					<a
 						href="#contact"
-						on:click={(e) => scrollToSection(e, '#contact')}
+						onclick={(e) => scrollToSection(e, '#contact')}
 						class="group relative flex items-center justify-center rounded-full bg-white p-[2px] transition-all"
 					>
 						<div

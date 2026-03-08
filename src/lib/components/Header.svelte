@@ -2,7 +2,6 @@
 	import { cn } from '$lib/utils';
 	import { User, Menu, X, Twitter, Facebook, Instagram, Phone, Mail, Clock } from 'lucide-svelte';
 	import { slide } from 'svelte/transition';
-	import { browser } from '$app/environment';
 	let isMenuOpen = false;
 	let scrollY = 0;
 

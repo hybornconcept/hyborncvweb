@@ -1,5 +1,6 @@
 import { superValidate } from 'sveltekit-superforms/server';
 import { orderSchema } from '$lib/schema';
+import { additional } from '$lib';
 import type { PageServerLoad, Actions } from './$types';
 import { pb } from '$lib/pocketbase';
 import { zod } from "sveltekit-superforms/adapters";
@@ -19,63 +20,67 @@ export const load = (async () => {
 
 export const actions = {
     default: async ({ request }) => {
+        const formData = await request.formData();
+        const form = await superValidate(formData, zod(orderSchema));
+
+        if (!form.valid) {
+            form.data.documents = []; // Clear files for serialization
+            return fail(400, { form });
+        }
+
         try {
-            const formData = await request.formData();
-            const form = await superValidate(formData, zod(orderSchema));
+            // 1. Prepare additional services with labels and prices for JSON storage
+            const selectedServices = Object.entries(form.data.services || {})
+                .filter(([_, checked]) => checked)
+                .map(([id]) => {
+                    const service = additional.find((s) => s.id === id);
+                    return {
+                        id,
+                        label: service?.label || id,
+                        price: service?.price || 0
+                    };
+                });
 
-            if (!form.valid) {
-                return fail(400, { form });
-            }
+            // 2. Prepare FormData for PocketBase
+            const pbData = new FormData();
+            pbData.append('Job_Title', form.data.jobtitle);
+            pbData.append('Career_Level', form.data.careerlevel);
+            pbData.append('Package', form.data.package);
+            pbData.append('Additional_Services', JSON.stringify(selectedServices));
 
-            // Create initial record without files
-            const initialData = new FormData();
-            for (const [key, value] of formData.entries()) {
-                if (key !== 'documents') {
-                    initialData.append(key, value);
-                }
-            }
+            // Format deadline for PocketBase (if it's a date string like '2024-03-08')
+            // PocketBase likes '2024-03-08 00:00:00.000Z'
+            const deadline = form.data.deadline;
+            pbData.append('Deadline', deadline.includes('T') ? deadline : `${deadline} 12:00:00.000Z`);
 
-            // Handle optional fields
-            Object.entries(form.data).forEach(([key, value]) => {
-                if (key !== 'documents') {
-                    if (value !== null && value !== undefined) {
-                        if (key === 'services') {
-                            initialData.append(key, JSON.stringify(value));
-                        } else {
-                            initialData.append(key, value as string);
-                        }
-                    }
-                }
-            });
+            pbData.append('fullname', form.data.fullname);
+            pbData.append('phone', form.data.phone);
+            pbData.append('Additional_comments', form.data.comments || '');
+            pbData.append('job_link', form.data.joblink || '');
 
-            // Create the initial record
-            const order = await pb.collection('orders').create(initialData);
-
-            // Handle multiple files
+            // 3. Handle multiple file uploads
             const files = formData.getAll('documents');
             for (const file of files) {
-                if (file instanceof File) {
-                    // Append each file using the "+ operator"
-                    await pb.collection('orders').update(order.id, {
-                        "documents+": file
-                    });
+                if (file instanceof File && file.size > 0) {
+                    pbData.append('documents', file);
                 }
             }
 
-            // Fetch the updated record with all files
-            const updatedOrder = await pb.collection('orders').getOne(order.id);
+            // 4. Create the record in PocketBase
+            const record = await pb.collection('orders').create(pbData);
 
+            form.data.documents = []; // Clear files for serialization
             return {
                 form,
                 success: true,
-                order: updatedOrder
+                record
             };
-
         } catch (error) {
-            console.error('Form submission error:', error);
+            console.error('Expert PB Submission Error:', error);
+            form.data.documents = []; // Clear files for serialization
             return fail(500, {
                 form,
-                error: error instanceof Error ? error.message : 'An unexpected error occurred'
+                error: error instanceof Error ? error.message : 'An unexpected error occurred during order creation'
             });
         }
     }

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	import { slide, fade } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
 	import { cubicInOut } from 'svelte/easing';
 
 	interface Package {
