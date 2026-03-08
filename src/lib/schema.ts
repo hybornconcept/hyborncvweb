@@ -14,7 +14,10 @@ const step1Schema = z.object({
 const step2Schema = z.object({
     phone: z.string().min(11, "Phone number must be at least 11 characters"),
     comments: z.string().optional(),
-    joblink: z.union([z.string().url("Please enter a valid URL"), z.literal("")]).optional(),
+    joblink: z.union([
+        z.string().regex(/^(https?:\/\/)?([\w.-]+)\.([a-z]{2,})(\/.*)?$/i, "Please enter a valid URL"),
+        z.literal("")
+    ]).optional(),
     documents: z.array(z.instanceof(File)).optional(),
     deadline: z.string().min(1, "Deadline is required")
 });
