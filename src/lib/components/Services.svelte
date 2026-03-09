@@ -55,7 +55,7 @@
 		<div class="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
 			{#each services as service}
 				<a
-					href="/auth"
+					href="/order"
 					class="group relative mt-6 flex h-full w-full cursor-pointer flex-col drop-shadow-md transition-all duration-300 hover:drop-shadow-2xl"
 				>
 					<!-- Folder Tab (Gradient outline, white background) -->
@@ -125,7 +125,7 @@
 										<span
 											class="font-bold transition-all group-hover:bg-gradient-to-r group-hover:from-[#E100FF] group-hover:to-[#7F00FF] group-hover:bg-clip-text group-hover:text-transparent"
 										>
-											Order Now
+											Get This
 										</span>
 										<ArrowRight
 											class="ml-2 h-3 w-3 transition-all group-hover:translate-x-1 group-hover:text-[#7F00FF]"

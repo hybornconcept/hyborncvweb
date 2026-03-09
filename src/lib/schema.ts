@@ -39,3 +39,26 @@ export function validateStep1(data: Partial<OrderSchema>) {
 export function validateStep2(data: Partial<OrderSchema>) {
     return step2Schema.safeParse(data);
 }
+
+// --- Authentication Schemas ---
+
+export const loginSchema = z.object({
+    email: z.string().min(1, 'Email is required').email('Invalid email address'),
+    password: z.string().min(1, 'Password is required')
+});
+
+export type LoginSchema = z.infer<typeof loginSchema>;
+
+export const registerSchema = z.object({
+    fullname: z.string().min(1, 'Full name is required'),
+    email: z.string().min(1, 'Email is required').email('Invalid email address'),
+    location: z.string().min(1, 'Location is required'),
+    phone: z.string().min(11, 'Phone number must be at least 11 characters'),
+    password: z.string().min(8, 'Password must be at least 8 characters'),
+    passwordConfirm: z.string().min(1, 'Please confirm your password')
+}).refine((data) => data.password === data.passwordConfirm, {
+    message: "Passwords don't match",
+    path: ["passwordConfirm"],
+});
+
+export type RegisterSchema = z.infer<typeof registerSchema>;

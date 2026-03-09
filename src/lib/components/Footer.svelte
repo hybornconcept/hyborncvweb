@@ -18,7 +18,7 @@
 					<img src="hylogo2.png" alt="HybornCV" class="h-10 w-10" />
 					<span class="ml-2 text-xl font-bold tracking-wide text-white">HybornCV</span>
 				</a>
-				<div class="mx-auto mt-4 hidden sm:mx-0 md:block lg:max-w-sm">
+				<div class="mx-auto mt-4 sm:mx-0 lg:max-w-sm">
 					<p class="text-sm text-gray-300">
 						Transforming careers through expert resume writing and professional branding services.
 						Your success story starts with a compelling resume.

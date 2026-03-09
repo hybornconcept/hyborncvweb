@@ -251,7 +251,7 @@
 				<h1
 					class="mb-2 bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-text px-5 py-4 text-3xl font-bold text-transparent"
 				>
-					Place Your Order
+					Let's Build Your Resume !
 				</h1>
 
 				<!-- Updated Step Indicator -->
@@ -259,7 +259,7 @@
 					<div class="mb-2 text-sm text-gray-500">STEP {currentStep} OF {totalSteps}</div>
 					<h2 class="text-md mb-4 font-semibold text-gray-900">
 						{#if currentStep === 1}
-							Choose Service
+							Choose Package
 						{:else if currentStep === 2}
 							Additional Information & Documents
 						{/if}
@@ -291,7 +291,8 @@
 							<h2 class="mb-2 text-3xl font-bold text-gray-900">Order Placed!</h2>
 							<p class="mb-8 max-w-sm text-gray-500">
 								Thank you! Your order has been successfully submitted. Our team will contact you
-								shortly to begin working on your professional documents.
+								shortly to begin working on your request. You can call or chat 07065151515 if you
+								have any inquiry!
 							</p>
 							<Button
 								href="/"
@@ -462,7 +463,7 @@
 										<Form.Field {form} name="documents">
 											<Form.Control>
 												{#snippet children({ props })}
-													<Form.Label>Upload Documents</Form.Label>
+													<Form.Label>Upload current Resume/AdditionalDocuments</Form.Label>
 													<div
 														class="rounded-lg border-2 border-dashed border-gray-300 p-2 text-center transition-colors hover:border-gray-400"
 													>

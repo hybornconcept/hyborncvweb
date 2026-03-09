@@ -11,28 +11,28 @@
 
 	const stats: Stat[] = [
 		{
-			value: '1120',
-			label: 'Job seekers served',
-			sublabel: 'with ATS compliant Resumes/CVs',
+			value: '1,120+',
+			label: 'Resumes & CVs Delivered',
+			sublabel: 'with ATS-compliant formatting',
 			countUp: true
 		},
 		{
-			value: '1121+',
-			label: 'SOPs and letters',
-			sublabel: 'written with professional touch',
+			value: '98%',
+			label: 'Client Satisfaction Rate',
+			sublabel: 'from verified client feedback',
 			countUp: true
 		},
 		{
-			value: '80%',
-			label: 'more likely to land an inteviews',
-			sublabel: 'with high conversion rates for past clients',
-			countUp: true
-		},
-		{
-			value: '2x',
-			label: 'More likely to land an interview',
-			sublabel: 'with our services',
+			value: '72hrs',
+			label: 'Average Turnaround Time',
+			sublabel: 'from order to final delivery',
 			countUp: false
+		},
+		{
+			value: '850+',
+			label: 'Clients Hired on First Attempt',
+			sublabel: 'across multiple industries worldwide',
+			countUp: true
 		}
 	];
 </script>

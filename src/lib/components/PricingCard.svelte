@@ -151,7 +151,7 @@
 							class="mt-auto flex w-full items-center justify-center rounded-full bg-white py-3.5 text-sm font-bold text-[#7F00FF] transition-all hover:bg-gray-50"
 						>
 							<User class="mr-2 h-4 w-4" />
-							Order now
+							Get this
 						</a>
 					</div>
 				{:else}
@@ -199,7 +199,7 @@
 								class="mt-auto flex w-full items-center justify-center rounded-full border-2 border-transparent bg-gradient-to-br from-[#E100FF] to-[#7F00FF] bg-clip-border py-3.5 text-sm font-bold text-white transition-all hover:opacity-90"
 							>
 								<User class="mr-2 h-4 w-4" />
-								Order now
+								Get this
 							</a>
 						</div>
 					</div>
