@@ -230,7 +230,7 @@
 					</div>
 
 					<div class="flex justify-end">
-						<a href="/auth#forgot" class="text-[12px] font-semibold text-[#7F00FF] hover:underline">
+						<a href="/auth/forgot-password" class="text-[12px] font-semibold text-[#7F00FF] hover:underline">
 							Forgot password?
 						</a>
 					</div>

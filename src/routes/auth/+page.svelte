@@ -1,13 +1,57 @@
 <script lang="ts">
-	import { MapPin, EyeOff, Eye } from '@lucide/svelte';
-	import { slide } from 'svelte/transition';
-	import { superForm } from 'sveltekit-superforms/client';
-	import { page } from '$app/state';
-	import type { PageData } from './$types';
+	import { MapPin, EyeOff, Eye } from "@lucide/svelte";
+	import { slide } from "svelte/transition";
+	import { superForm } from "sveltekit-superforms/client";
+	import { page } from "$app/state";
+	import type { PageData } from "./$types";
+	import * as Form from "$lib/components/ui/form/index.js";
+	import * as Select from "$lib/components/ui/select/index.js";
+	import { Input } from "$lib/components/ui/input/index.js";
+
+	export const nigeriaStates = [
+		"International",
+		"Abia",
+		"Adamawa",
+		"Akwa Ibom",
+		"Anambra",
+		"Bauchi",
+		"Bayelsa",
+		"Benue",
+		"Borno",
+		"Cross River",
+		"Delta",
+		"Ebonyi",
+		"Edo",
+		"Ekiti",
+		"Enugu",
+		"FCT - Abuja",
+		"Gombe",
+		"Imo",
+		"Jigawa",
+		"Kaduna",
+		"Kano",
+		"Katsina",
+		"Kebbi",
+		"Kogi",
+		"Kwara",
+		"Lagos",
+		"Nasarawa",
+		"Niger",
+		"Ogun",
+		"Ondo",
+		"Osun",
+		"Oyo",
+		"Plateau",
+		"Rivers",
+		"Sokoto",
+		"Taraba",
+		"Yobe",
+		"Zamfara",
+	];
 
 	let { data }: { data: PageData } = $props();
 
-	let isLogin = $state(page.url.searchParams.get('mode') !== 'signup');
+	let isLogin = $state(page.url.searchParams.get("mode") !== "signup");
 	let showPassword = $state(false);
 	let showConfirmPassword = $state(false);
 
@@ -25,19 +69,30 @@
 </script>
 
 <svelte:head>
-	<title>{isLogin ? 'Sign in' : 'Create Account'} | HybornCV</title>
+	<title>{isLogin ? "Sign in" : "Create Account"} | HybornCV</title>
 </svelte:head>
 
-<div class="flex min-h-screen items-center justify-center bg-[#F8F9FA] p-4 font-sans sm:p-8">
+<div
+	class="flex min-h-screen items-center justify-center bg-[#F8F9FA] p-4 font-sans sm:p-8"
+>
 	<div
-		class="relative flex min-h-[850px] w-full max-w-[1080px] overflow-hidden rounded-[2rem] bg-white p-3 shadow-[0_12px_40px_rgb(0,0,0,0.06)] md:p-4"
+		class="relative flex min-h-[950px] w-full max-w-[1080px] overflow-hidden rounded-[2rem] bg-white p-3 shadow-[0_12px_40px_rgb(0,0,0,0.06)] md:p-4"
 	>
 		<!-- Left side - Form -->
-		<div class="relative flex w-full flex-col px-6 py-10 md:w-[50%] lg:w-[45%] lg:px-8">
+		<div
+			class="relative flex w-full flex-col px-6 py-10 md:w-[50%] lg:w-[45%] lg:px-8"
+		>
 			<!-- Logo -->
 			<div class="mb-12 flex justify-start">
-				<a href="/" class="flex items-center gap-2.5 transition-transform active:scale-95">
-					<img src="/hylogo2.png" alt="HybornCV Logo" class="h-9 w-9 object-contain" />
+				<a
+					href="/"
+					class="flex items-center gap-2.5 transition-transform active:scale-95"
+				>
+					<img
+						src="/hylogo2.png"
+						alt="HybornCV Logo"
+						class="h-9 w-9 object-contain"
+					/>
 					<div class="flex items-baseline font-sans uppercase tracking-tight">
 						<span class="text-2xl font-black text-[#A100FF]">Hyborn</span>
 						<span class="ml-0.5 text-xl font-light text-[#E100FF]">CV</span>
@@ -47,13 +102,15 @@
 
 			<div class="mx-auto w-full max-w-[340px]">
 				<div class="mb-6">
-					<h1 class="mb-2 text-[28px] font-extrabold tracking-tight text-[#111827]">
-						{isLogin ? 'Welcome back' : 'Sign up'}
+					<h1
+						class="mb-2 text-[28px] font-extrabold tracking-tight text-[#111827]"
+					>
+						{isLogin ? "Welcome back" : "Sign up"}
 					</h1>
 					<p class="text-sm font-normal text-[#6B7280]">
 						{isLogin
-							? 'Please enter your details to sign in.'
-							: 'Be the next to land thier dream job !'}
+							? "Please enter your details to sign in."
+							: "Be the next to land thier dream job !"}
 					</p>
 				</div>
 
@@ -64,7 +121,7 @@
 					>
 						<button
 							class="w-1/2 rounded-full py-2.5 text-center text-[13px] font-bold transition-all {isLogin
-								? 'bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-white shadow-md'
+								? 'bg-linear-to-r from-[#E100FF] to-[#7F00FF] text-white shadow-md'
 								: 'text-gray-500 hover:text-gray-900'}"
 							onclick={() => (isLogin = true)}
 							type="button"
@@ -73,7 +130,7 @@
 						</button>
 						<button
 							class="w-1/2 rounded-full py-2.5 text-center text-[13px] font-bold transition-all {!isLogin
-								? 'bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-white shadow-md'
+								? 'bg-linear-to-r from-[#E100FF] to-[#7F00FF] text-white shadow-md'
 								: 'text-gray-500 hover:text-gray-900'}"
 							onclick={() => (isLogin = false)}
 							type="button"
@@ -107,75 +164,94 @@
 								d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
 							/>
 						</svg>
-						{isLogin ? 'Continue with Google' : 'Sign up with Google'}
+						{isLogin ? "Continue with Google" : "Sign up with Google"}
 					</a>
 				</div>
 
 				<div class="mb-6 flex items-center gap-3">
 					<div class="h-px flex-1 bg-[#F3F4F6]"></div>
-					<span class="text-[11px] font-semibold uppercase tracking-wider text-[#9CA3AF]">or</span>
+					<span
+						class="text-[11px] font-semibold uppercase tracking-wider text-[#9CA3AF]"
+						>or</span
+					>
 					<div class="h-px flex-1 bg-[#F3F4F6]"></div>
 				</div>
 
 				<!-- Form Fields -->
 				{#if isLogin}
-					<form method="POST" action="?/login" use:loginEnhance class="space-y-4">
-						<div class="space-y-1.5" transition:slide={{ duration: 300 }}>
-							<label for="login-email" class="block text-[13px] font-bold text-[#111827]"
-								>Email*</label
-							>
-							<input
-								type="email"
-								id="login-email"
-								name="email"
-								bind:value={$loginForm.email}
-								placeholder="Enter your email"
-								class="h-11 w-full rounded-xl border border-[#E5E7EB] px-3.5 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-							/>
-							{#if $loginErrors.email}<span class="text-xs text-red-500">{$loginErrors.email}</span
-								>{/if}
-						</div>
+					<form
+						method="POST"
+						action="?/login"
+						use:loginEnhance
+						class="space-y-4"
+					>
+						<Form.Field form={loginSuper} name="email">
+							<Form.Control>
+								{#snippet children({ props })}
+									<Form.Label class="block text-[13px] font-bold text-[#111827]"
+										>Email*</Form.Label
+									>
+									<Input
+										{...props}
+										type="email"
+										id="login-email"
+										bind:value={$loginForm.email}
+										placeholder="Enter your email"
+										class="h-[50px] w-full rounded-xl border border-[#E5E7EB] px-4 py-0 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
+									/>
+								{/snippet}
+							</Form.Control>
+							<Form.FieldErrors class="text-xs text-red-500" />
+						</Form.Field>
 
-						<div class="space-y-1.5" transition:slide={{ duration: 300 }}>
-							<label for="login-password" class="block text-[13px] font-bold text-[#111827]"
-								>Password*</label
-							>
-							<div class="relative">
-								<input
-									type={showPassword ? 'text' : 'password'}
-									id="login-password"
-									name="password"
-									bind:value={$loginForm.password}
-									placeholder="Enter your password"
-									class="h-11 w-full rounded-xl border border-[#E5E7EB] px-3.5 pr-10 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-								/>
-								<button
-									type="button"
-									class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-700"
-									onclick={() => (showPassword = !showPassword)}
-								>
-									{#if showPassword}
-										<Eye class="h-4 w-4" />
-									{:else}
-										<EyeOff class="h-4 w-4" />
-									{/if}
-								</button>
-							</div>
-							{#if $loginErrors.password}<span class="text-xs text-red-500"
-									>{$loginErrors.password}</span
-								>{/if}
-						</div>
+						<Form.Field form={loginSuper} name="password">
+							<Form.Control>
+								{#snippet children({ props })}
+									<Form.Label class="block text-[13px] font-bold text-[#111827]"
+										>Password*</Form.Label
+									>
+									<div class="relative">
+										<Input
+											{...props}
+											type={showPassword ? "text" : "password"}
+											id="login-password"
+											bind:value={$loginForm.password}
+											placeholder="Enter your password"
+											class="h-[50px] w-full rounded-xl border border-[#E5E7EB] px-4 pr-10 py-0 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
+										/>
+										<button
+											type="button"
+											class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-700"
+											onclick={() => (showPassword = !showPassword)}
+										>
+											{#if showPassword}
+												<Eye class="h-4 w-4" />
+											{:else}
+												<EyeOff class="h-4 w-4" />
+											{/if}
+										</button>
+									</div>
+								{/snippet}
+							</Form.Control>
+							<Form.FieldErrors class="text-xs text-red-500" />
+						</Form.Field>
 
-						<div class="flex justify-end pt-1" transition:slide={{ duration: 300 }}>
-							<a href="#forgot" class="text-[12px] font-bold text-[#7F00FF] hover:underline"
-								>Forgot password?</a
+						<div
+							class="flex justify-end pt-1"
+							transition:slide={{ duration: 300 }}
+						>
+							<a
+								href="/auth/forgot-password"
+								class="text-[12px] font-semibold text-[#7F00FF] hover:underline"
 							>
+								Forgot password?
+							</a>
 						</div>
 
 						<button
 							type="submit"
 							disabled={$loginSubmitting}
-							class="mt-4 flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-[14px] font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-70"
+							class="mt-4 flex h-12 w-full items-center justify-center rounded-xl bg-linear-to-r from-[#E100FF] to-[#7F00FF] text-[14px] font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-70"
 						>
 							{#if $loginSubmitting}
 								<span
@@ -190,121 +266,144 @@
 						method="POST"
 						action="?/register"
 						use:registerEnhance
-						class="max-h-[380px] space-y-3 overflow-y-auto pr-1"
+						class="space-y-3"
 					>
-						<div class="space-y-1" transition:slide={{ duration: 300 }}>
-							<input
-								type="text"
-								name="fullname"
-								bind:value={$registerForm.fullname}
-								placeholder="Full name"
-								class="h-10 w-full rounded-xl border border-[#E5E7EB] px-3.5 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-							/>
-							{#if $registerErrors.fullname}<span class="block text-[10px] text-red-500"
-									>{$registerErrors.fullname}</span
-								>{/if}
-						</div>
+						<Form.Field form={registerSuper} name="fullname">
+							<Form.Control>
+								{#snippet children({ props })}
+									<Input
+										{...props}
+										bind:value={$registerForm.fullname}
+										placeholder="Full name"
+										class="h-[50px] w-full rounded-xl border border-[#E5E7EB] px-4 py-0 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
+									/>
+								{/snippet}
+							</Form.Control>
+							<Form.FieldErrors class="block text-[10px] text-red-500" />
+						</Form.Field>
 
-						<div class="space-y-1" transition:slide={{ duration: 300 }}>
-							<input
-								type="email"
-								name="email"
-								bind:value={$registerForm.email}
-								placeholder="Email"
-								class="h-10 w-full rounded-xl border border-[#E5E7EB] px-3.5 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-							/>
-							{#if $registerErrors.email}<span class="block text-[10px] text-red-500"
-									>{$registerErrors.email}</span
-								>{/if}
-						</div>
+						<Form.Field form={registerSuper} name="email">
+							<Form.Control>
+								{#snippet children({ props })}
+									<Input
+										{...props}
+										type="email"
+										bind:value={$registerForm.email}
+										placeholder="Email"
+										class="h-[50px] w-full rounded-xl border border-[#E5E7EB] px-4 py-0 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
+									/>
+								{/snippet}
+							</Form.Control>
+							<Form.FieldErrors class="block text-[10px] text-red-500" />
+						</Form.Field>
 
-						<div class="space-y-3" transition:slide={{ duration: 300 }}>
-							<div class="space-y-1">
-								<select
-									name="location"
-									bind:value={$registerForm.location}
-									class="h-10 w-full rounded-xl border border-[#E5E7EB] px-3.5 text-sm outline-none transition-all focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-								>
-									<option value="" disabled selected>Select location</option>
-									<option value="Lagos">Lagos</option>
-									<option value="Rivers">Rivers</option>
-									<option value="Abuja">Abuja</option>
-								</select>
-								{#if $registerErrors.location}<span class="block text-[10px] text-red-500"
-										>{$registerErrors.location}</span
-									>{/if}
-							</div>
+						<Form.Field form={registerSuper} name="location">
+							<Form.Control>
+								{#snippet children({ props })}
+									<Select.Root
+										type="single"
+										name={props.name}
+										bind:value={$registerForm.location}
+									>
+										<Select.Trigger
+											{...props}
+											class="h-[50px] w-full rounded-xl border border-[#E5E7EB] bg-white px-4 py-0 text-sm outline-none transition-all focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10 {$registerForm.location
+												? 'text-[#111827]'
+												: 'text-[#9CA3AF]'}"
+										>
+											{$registerForm.location || "Select location"}
+										</Select.Trigger>
+										<Select.Content class="max-h-60 overflow-y-auto">
+											<Select.Group>
+												{#each nigeriaStates as state}
+													<Select.Item value={state} label={state}
+														>{state}</Select.Item
+													>
+												{/each}
+											</Select.Group>
+										</Select.Content>
+									</Select.Root>
+								{/snippet}
+							</Form.Control>
+							<Form.FieldErrors class="text-[10px] text-red-500" />
+						</Form.Field>
 
-							<div class="space-y-1">
-								<input
-									type="tel"
-									name="phone"
-									bind:value={$registerForm.phone}
-									placeholder="Phone number"
-									class="h-10 w-full rounded-xl border border-[#E5E7EB] px-3.5 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-								/>
-								{#if $registerErrors.phone}<span class="block text-[10px] text-red-500"
-										>{$registerErrors.phone}</span
-									>{/if}
-							</div>
-						</div>
+						<Form.Field form={registerSuper} name="phone">
+							<Form.Control>
+								{#snippet children({ props })}
+									<Input
+										{...props}
+										type="tel"
+										bind:value={$registerForm.phone}
+										placeholder="Phone number"
+										class="h-[50px] w-full rounded-xl border border-[#E5E7EB] px-4 py-0 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
+									/>
+								{/snippet}
+							</Form.Control>
+							<Form.FieldErrors class="block text-[10px] text-red-500" />
+						</Form.Field>
 
-						<div class="space-y-1" transition:slide={{ duration: 300 }}>
-							<div class="relative">
-								<input
-									type={showPassword ? 'text' : 'password'}
-									name="password"
-									bind:value={$registerForm.password}
-									placeholder="Password"
-									class="h-10 w-full rounded-xl border border-[#E5E7EB] px-3.5 pr-10 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-								/>
-								<button
-									type="button"
-									class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-700"
-									onclick={() => (showPassword = !showPassword)}
-								>
-									{#if showPassword}
-										<Eye class="h-4 w-4" />
-									{:else}
-										<EyeOff class="h-4 w-4" />
-									{/if}
-								</button>
-							</div>
-							{#if $registerErrors.password}<span class="block text-[10px] text-red-500"
-									>{$registerErrors.password}</span
-								>{/if}
-						</div>
+						<Form.Field form={registerSuper} name="password">
+							<Form.Control>
+								{#snippet children({ props })}
+									<div class="relative">
+										<Input
+											{...props}
+											type={showPassword ? "text" : "password"}
+											bind:value={$registerForm.password}
+											placeholder="Password"
+											class="h-[50px] w-full rounded-xl border border-[#E5E7EB] px-4 pr-10 py-0 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
+										/>
+										<button
+											type="button"
+											class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-700"
+											onclick={() => (showPassword = !showPassword)}
+										>
+											{#if showPassword}
+												<Eye class="h-4 w-4" />
+											{:else}
+												<EyeOff class="h-4 w-4" />
+											{/if}
+										</button>
+									</div>
+								{/snippet}
+							</Form.Control>
+							<Form.FieldErrors class="block text-[10px] text-red-500" />
+						</Form.Field>
 
-						<div class="space-y-1" transition:slide={{ duration: 300 }}>
-							<div class="relative">
-								<input
-									type={showConfirmPassword ? 'text' : 'password'}
-									name="passwordConfirm"
-									bind:value={$registerForm.passwordConfirm}
-									placeholder="Confirm password"
-									class="h-10 w-full rounded-xl border border-[#E5E7EB] px-3.5 pr-10 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
-								/>
-								<button
-									type="button"
-									class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-700"
-									onclick={() => (showConfirmPassword = !showConfirmPassword)}
-								>
-									{#if showConfirmPassword}
-										<Eye class="h-4 w-4" />
-									{:else}
-										<EyeOff class="h-4 w-4" />
-									{/if}
-								</button>
-							</div>
-							{#if $registerErrors.passwordConfirm}<span class="block text-[10px] text-red-500"
-									>{$registerErrors.passwordConfirm}</span
-								>{/if}
-						</div>
+						<Form.Field form={registerSuper} name="passwordConfirm">
+							<Form.Control>
+								{#snippet children({ props })}
+									<div class="relative">
+										<Input
+											{...props}
+											type={showConfirmPassword ? "text" : "password"}
+											bind:value={$registerForm.passwordConfirm}
+											placeholder="Confirm password"
+											class="h-[50px] w-full rounded-xl border border-[#E5E7EB] px-4 pr-10 py-0 text-sm outline-none transition-all placeholder:text-[#9CA3AF] focus:border-[#111827] focus:ring-2 focus:ring-[#111827]/10"
+										/>
+										<button
+											type="button"
+											class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-700"
+											onclick={() =>
+												(showConfirmPassword = !showConfirmPassword)}
+										>
+											{#if showConfirmPassword}
+												<Eye class="h-4 w-4" />
+											{:else}
+												<EyeOff class="h-4 w-4" />
+											{/if}
+										</button>
+									</div>
+								{/snippet}
+							</Form.Control>
+							<Form.FieldErrors class="block text-[10px] text-red-500" />
+						</Form.Field>
 
 						<button
 							type="submit"
 							disabled={$registerSubmitting}
-							class="mt-4 flex h-12 w-full items-center justify-center rounded-xl bg-gradient-to-r from-[#E100FF] to-[#7F00FF] text-[14px] font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-70"
+							class="mt-4 flex h-12 w-full items-center justify-center rounded-xl bg-linear-to-r from-[#E100FF] to-[#7F00FF] text-[14px] font-bold text-white shadow-md transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-70"
 						>
 							{#if $registerSubmitting}
 								<span
@@ -354,12 +453,16 @@
 			class="group relative hidden min-h-[600px] self-stretch overflow-hidden rounded-[1.75rem] md:flex md:w-[50%] lg:w-[55%]"
 		>
 			<!-- Image Background -->
-			<div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105">
+			<div
+				class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105"
+			>
 				<img
 					src="/woman.jpg"
-					alt="Creative working"
+					alt="Happy professional staff"
 					class="h-full w-full object-cover object-center"
+					loading="lazy"
 				/>
+
 				<!-- Gradient to make text pop -->
 				<div
 					class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"
@@ -382,20 +485,26 @@
 				></div>
 			</div>
 
-			<!-- User Info Badge Overlay -->
+			<!-- Intricate Organic Cutout Mask for Bottom-Right -->
 			<div
-				class="absolute right-[40px] top-[80px] z-20 flex flex-col gap-1 rounded-[18px] border border-white/20 bg-white/10 px-4 py-3 shadow-2xl backdrop-blur-md transition-all hover:bg-white/20"
+				class="pointer-events-none absolute bottom-0 right-0 z-10 h-[72px] w-[100px] rounded-tl-[32px] bg-white"
 			>
-				<p class="flex items-center gap-1.5 text-[12px] font-bold text-white">Amelia Udeme</p>
-				<p class="flex items-center gap-1.5 text-[10px] font-medium text-white/80">
-					<MapPin size={12} strokeWidth={2.5} class="text-white" /> Abuja, Nigeria
-				</p>
+				<!-- Left connecting inward curve -->
+				<div
+					class="absolute -left-[28px] bottom-0 h-[28px] w-[28px] rounded-br-[32px] bg-transparent"
+					style="box-shadow: 12px 12px 0 12px white;"
+				></div>
+				<!-- Top connecting inward curve -->
+				<div
+					class="absolute -top-[28px] right-0 h-[28px] w-[28px] rounded-br-[32px] bg-transparent"
+					style="box-shadow: 12px 12px 0 12px white;"
+				></div>
 			</div>
 
-			<!-- Testimonial Pill -->
-			<div class="absolute bottom-[30px] left-6 right-6 z-20">
+			<!-- Merged Testimonial Pill -->
+			<div class="absolute left-6 right-6 top-[80px] z-20 max-h-[150px]">
 				<div
-					class="group/pill flex w-full items-center gap-4 rounded-[20px] border border-white/20 bg-white/10 p-4 backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/20"
+					class="group/pill flex w-full items-center gap-4 rounded-[20px] border border-white/20 bg-white/10 px-5 py-4 shadow-2xl backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/20"
 				>
 					<div
 						class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/10 transition-colors group-hover/pill:bg-white/20"
@@ -414,11 +523,22 @@
 						</svg>
 					</div>
 					<div class="flex min-w-0 flex-1 flex-col">
-						<p class="text-sm font-medium italic leading-relaxed text-white">
-							"Five years of Joblessness ended with the right resume from HYBORN CV. I finally
-							lannded my dream job with one resume review, they are simply the best."
+						<p
+							class="text-base font-medium italic leading-[1.3] tracking-wide text-white"
+							style="font-family: 'Cormorant Garamond', serif;"
+						>
+							"Five years of Joblessness ended with the right resume from HYBORN
+							CV. I finally lannded my dream job with one resume review, they
+							are simply the best."
 						</p>
-						<p class="mt-1 text-[10px] font-bold text-white/80">— Amelia Udeme</p>
+						<div class="mt-2 flex items-center justify-between">
+							<p class="text-[12px] font-bold text-white/90">— Amelia Udeme</p>
+							<p
+								class="flex items-center gap-1.5 text-[10px] font-medium text-white/80"
+							>
+								<MapPin size={12} strokeWidth={2.5} class="text-white" /> Abuja, Nigeria
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
